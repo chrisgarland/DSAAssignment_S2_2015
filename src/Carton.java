@@ -3,6 +3,8 @@
  */
 public class Carton
 {
+    private static final String NO_EXPIRY = "0000-00-00";
+
     private int consignmentNote;
     private String productType;
     private String wholesalerName;
@@ -14,9 +16,9 @@ public class Carton
      * initialising all member fields.
      *
      * @param consignmentNote - Initial value.
-     * @param productType - Initial value.
-     * @param wholesalerName - Initial value.
-     * @param warrantyDate - Initial value.
+     * @param productType     - Initial value.
+     * @param wholesalerName  - Initial value.
+     * @param warrantyDate    - Initial value.
      */
     public Carton( int consignmentNote, String productType, String wholesalerName, String warrantyDate )
     {
@@ -59,7 +61,7 @@ public class Carton
     }
 
 
-//Accessors: Exceptions are handled in constructor
+//Mutators: Exceptions are handled in constructor
 
     public void setConsignmentNote( int consignmentNote )
     {
@@ -82,19 +84,37 @@ public class Carton
     }
 
 
+//Public methods:
+
+    /**
+     * If warrantyDate is "0000-00-00" (NO_EXPIRY),
+     * instance has lifetime warranty, return true.
+     * Else return false.
+     *
+     * @return - true/false
+     */
+    public boolean hasLifetimeWarranty()
+    {
+        return getWarrantyDate().equals( NO_EXPIRY );
+    }
+
+
+//Private methods:
+
     /**
      * Purely for exception handling purposes.
      *
      * @param consignmentNote - Asserts int > 0 && < 1024.
-     * @param productType - Asserts String not null && not empty.
-     * @param wholesalerName - Asserts String not null && not empty.
-     * @param warrantyDate - Asserts String not null && not empty.
+     * @param productType     - Asserts String not null && not empty.
+     * @param wholesalerName  - Asserts String not null && not empty.
+     * @param warrantyDate    - Asserts String not null && not empty.
      * @throws IllegalArgumentException
      */
     private void validateParameters( int consignmentNote,
                                      String productType,
                                      String wholesalerName,
-                                     String warrantyDate ) throws IllegalArgumentException
+                                     String warrantyDate
+    ) throws IllegalArgumentException
     {
         if( consignmentNote < 0 || consignmentNote == 0 )
         {
