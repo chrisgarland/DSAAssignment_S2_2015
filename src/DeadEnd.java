@@ -6,9 +6,6 @@
  */
 public class DeadEnd extends StockRoom
 {
-    Object[] stack;
-
-
     /**
      * Default constructor creates Stack
      * with default size of 100
@@ -16,8 +13,6 @@ public class DeadEnd extends StockRoom
     public DeadEnd()
     {
         super();
-        stack = new Object[maxElements];
-        numElements = 0;
     }
 
 
@@ -29,14 +24,13 @@ public class DeadEnd extends StockRoom
      */
     public DeadEnd( int inMaxElements )
     {
-        super(inMaxElements);                           //Exceptions handled in parent class
-        stack = new Object[maxElements];
+        super( inMaxElements );                           //Exceptions handled in parent class
     }
 
 
     /**
      * Imports an object and pushes onto
-     * stack.
+     * storageBank.
      *
      * @param inVal - Object to be pushed
      */
@@ -47,22 +41,22 @@ public class DeadEnd extends StockRoom
         {
             throw new IllegalArgumentException( "Provided value must not be null" );
         }
-        else if( isFull() )                             //Assert stack is not full before pushing
+        else if( isFull() )                             //Assert storageBank is not full before pushing
         {
             throw new IllegalStateException( "Stack is full. Cannot push value" );
         }
 
-        stack[numElements] = inVal;                   //Use numElements as index then increment by 1
+        storageBank[numElements] = inVal;                   //Use numElements as index then increment by 1
         numElements++;
     }
 
 
     /**
      * Returns the topmost object
-     * on the stack and decrements item
+     * on the storageBank and decrements item
      * count.
      *
-     * @return - Top of stack
+     * @return - Top of storageBank
      */
     @Override
     public Object remove()
@@ -72,18 +66,17 @@ public class DeadEnd extends StockRoom
             throw new IllegalStateException( "Stack is empty. Cannot pop value" );
         }
 
-        return stack[--numElements];                    //Decrement numElements by 1 before using it as index
-
+        return storageBank[--numElements];                    //Decrement numElements by 1 before using it as index
     }
 
 
     /**
      * Returns topmost object
-     * on the stack without decrementing
+     * on the storageBank without decrementing
      * the count. Essentially just checking
      * the top value
      *
-     * @return - Top of stack.
+     * @return - Top of storageBank.
      */
     @Override
     public Object peek()
@@ -93,7 +86,7 @@ public class DeadEnd extends StockRoom
             throw new IllegalStateException( "Stack empty. Can't check top value" );
         }
 
-        return stack[numElements - 1];                  //Last pushed value
+        return storageBank[numElements - 1];                  //Last pushed value
     }
 
 }

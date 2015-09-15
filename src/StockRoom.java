@@ -3,20 +3,23 @@
  */
 public abstract class StockRoom
 {
+    private static final int DEFAULT_LENGTH = 100;
+
     protected int maxElements;
     protected int numElements;
+    protected Object[] storageBank;
 
 //Constructors:
 
-
     public StockRoom()
     {
-        maxElements = 100;
         numElements = 0;
+        maxElements = DEFAULT_LENGTH;
+        storageBank = new Object[DEFAULT_LENGTH];
     }
 
 
-    public StockRoom(int maxElements)
+    public StockRoom( int maxElements )
     {
         if( maxElements < 0 || maxElements == 0 )
         {
@@ -24,12 +27,14 @@ public abstract class StockRoom
         }
 
         setMaxElements( maxElements );
+        numElements = 0;
+        storageBank = new Object[maxElements];
     }
 
 
 //Abstract Methods:
 
-    public abstract void insert(Object inValue);
+    public abstract void insert( Object inValue );
 
     public abstract Object remove();
 
