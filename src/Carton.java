@@ -8,6 +8,16 @@ public class Carton
     private String wholesalerName;
     private String warrantyDate;
 
+
+    /**
+     * Alternate constructor calls validateParameters() before
+     * initialising all member fields.
+     *
+     * @param consignmentNote - Initial value.
+     * @param productType - Initial value.
+     * @param wholesalerName - Initial value.
+     * @param warrantyDate - Initial value.
+     */
     public Carton( int consignmentNote, String productType, String wholesalerName, String warrantyDate )
     {
         try
