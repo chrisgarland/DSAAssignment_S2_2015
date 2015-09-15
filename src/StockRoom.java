@@ -21,12 +21,7 @@ public abstract class StockRoom
 
     public StockRoom( int maxElements )
     {
-        if( maxElements < 0 || maxElements == 0 )
-        {
-            throw new IllegalArgumentException( "Max elements must be greater than 0" );
-        }
-
-        setMaxElements( maxElements );
+        setMaxElements( maxElements );                          //Exceptions handled in mutators
         numElements = 0;
         storageBank = new Object[maxElements];
     }
@@ -95,8 +90,13 @@ public abstract class StockRoom
 
 //Mutators:
 
-    public void setMaxElements( int maxElements )
+    public void setMaxElements( int maxElements ) throws IllegalArgumentException
     {
+        if( maxElements < 0 || maxElements == 0 )
+        {
+            throw new IllegalArgumentException( "Max elements must be greater than 0" );
+        }
+
         this.maxElements = maxElements;
     }
 }

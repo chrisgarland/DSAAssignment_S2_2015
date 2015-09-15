@@ -33,9 +33,11 @@ public class DeadEnd extends StockRoom
      * storageBank.
      *
      * @param inVal - Object to be pushed
+     * @throws IllegalArgumentException
+     * @throws IllegalStateException
      */
     @Override
-    public void insert( Object inVal )
+    public void insert( Object inVal ) throws IllegalArgumentException, IllegalStateException
     {
         if( inVal == null )                             //Assert valid Object provided
         {
@@ -57,9 +59,10 @@ public class DeadEnd extends StockRoom
      * count.
      *
      * @return - Top of storageBank
+     * @throws IllegalStateException
      */
     @Override
-    public Object remove()
+    public Object remove() throws IllegalStateException
     {
         if( isEmpty() )
         {
@@ -76,10 +79,11 @@ public class DeadEnd extends StockRoom
      * the count. Essentially just checking
      * the top value
      *
-     * @return - Top of storageBank.
+     * @return - Top element
+     * @throws IllegalStateException
      */
     @Override
-    public Object peek()
+    public Object peek() throws IllegalStateException
     {
         if( isEmpty() )
         {
