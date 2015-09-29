@@ -38,6 +38,10 @@ public class Yard extends StockRoom
         }
     }
 
+    /**
+     * Needs work
+     * @return
+     */
     @Override
     public Object remove()
     {
@@ -55,10 +59,10 @@ public class Yard extends StockRoom
     @Override
     public Object peek()
     {
-        return null;
+        return null;                            //Needs implementation
     }
 
-    public Object remove( int index )
+    public Object remove( int index ) throws IllegalStateException
     {
         Object value;
 
