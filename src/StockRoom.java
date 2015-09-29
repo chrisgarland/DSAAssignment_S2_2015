@@ -56,7 +56,7 @@ public abstract class StockRoom
      *
      * @return -
      */
-    public boolean isEmpty()
+    protected boolean isEmpty()
     {
         boolean empty = false;
 
@@ -75,7 +75,7 @@ public abstract class StockRoom
      *
      * @return -
      */
-    public boolean isFull()
+    protected boolean isFull()
     {
         boolean full = false;
 
@@ -90,7 +90,7 @@ public abstract class StockRoom
 
 //Mutators:
 
-    public void setMaxElements( int maxElements ) throws IllegalArgumentException
+    protected void setMaxElements( int maxElements ) throws IllegalArgumentException
     {
         if( maxElements < 0 || maxElements == 0 )
         {
