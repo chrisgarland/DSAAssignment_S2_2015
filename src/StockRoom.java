@@ -1,5 +1,8 @@
 /**
  * Created by chrisgarland on 15/09/15.
+ * <p/>
+ * All instances of DeadEnd, Rolling corridor and Yard
+ * will extend this class
  */
 public abstract class StockRoom
 {
@@ -9,8 +12,13 @@ public abstract class StockRoom
     protected int numElements;
     protected Object[] storageBank;
 
-//Constructors:
 
+//Constructors: Called by subclasses
+
+    /**
+     * Default constructor.
+     * Initialises all member fields to default values
+     */
     public StockRoom()
     {
         numElements = 0;
@@ -19,6 +27,11 @@ public abstract class StockRoom
     }
 
 
+    /**
+     * Alternate constructor
+     *
+     * @param maxElements - Given by user
+     */
     public StockRoom( int maxElements )
     {
         setMaxElements( maxElements );                          //Exceptions handled in mutators
@@ -27,7 +40,7 @@ public abstract class StockRoom
     }
 
 
-//Abstract Methods:
+//Abstract Methods: Overridden in subclasses
 
     public abstract void insert( Object inValue );
 
@@ -36,14 +49,26 @@ public abstract class StockRoom
     public abstract Object peek();
 
 
+/*All following methods have common implementation for all subclasses*/
+
 //Accessors:
 
+    /**
+     * Accessor for maxElements
+     *
+     * @return - maxElements
+     */
     public int getMaxElements()
     {
         return maxElements;
     }
 
 
+    /**
+     * Accessor for numElements
+     *
+     * @return - numElements
+     */
     public int count()
     {
         return numElements;
@@ -58,16 +83,30 @@ public abstract class StockRoom
      */
     protected boolean isEmpty()
     {
-        boolean empty = false;
-
-        if( count() == 0 )
-        {
-            empty = true;
-        }
-
-        return empty;
+        return count() == 0;
     }
 
+
+//Mutators:
+
+    /**
+     * Mutator for maxElements
+     *
+     * @param maxElements - Given by user
+     * @throws IllegalArgumentException
+     */
+    protected void setMaxElements( int maxElements ) throws IllegalArgumentException
+    {
+        if( maxElements < 0 || maxElements == 0 )
+        {
+            throw new IllegalArgumentException( "Max elements must be greater than 0" );
+        }
+
+        this.maxElements = maxElements;
+    }
+
+
+//Supporting methods:
 
     /**
      * Uses count() and getMaxelements()
@@ -85,18 +124,5 @@ public abstract class StockRoom
         }
 
         return full;
-    }
-
-
-//Mutators:
-
-    protected void setMaxElements( int maxElements ) throws IllegalArgumentException
-    {
-        if( maxElements < 0 || maxElements == 0 )
-        {
-            throw new IllegalArgumentException( "Max elements must be greater than 0" );
-        }
-
-        this.maxElements = maxElements;
     }
 }
