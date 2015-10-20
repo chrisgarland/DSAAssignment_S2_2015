@@ -51,6 +51,7 @@ public abstract class StockRoom
 
 /*All following methods have common implementation for all subclasses*/
 
+
 //Accessors:
 
     /**
@@ -72,18 +73,6 @@ public abstract class StockRoom
     public int count()
     {
         return numElements;
-    }
-
-
-    /**
-     * Uses count() to check whether stack
-     * isEmpty.
-     *
-     * @return -
-     */
-    protected boolean isEmpty()
-    {
-        return count() == 0;
     }
 
 
@@ -109,6 +98,18 @@ public abstract class StockRoom
 //Supporting methods:
 
     /**
+     * Uses count() to check whether stack
+     * isEmpty.
+     *
+     * @return -
+     */
+    protected boolean isEmpty()
+    {
+        return count() == 0;
+    }
+
+
+    /**
      * Uses count() and getMaxelements()
      * to check whether stack is full.
      *
@@ -116,13 +117,6 @@ public abstract class StockRoom
      */
     protected boolean isFull()
     {
-        boolean full = false;
-
-        if( count() == getMaxElements() )
-        {
-            full = true;
-        }
-
-        return full;
+        return count() == getMaxElements();
     }
 }
