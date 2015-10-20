@@ -1,14 +1,14 @@
 /**
  * Created by chrisgarland on 7/10/15.
- * <p>
+ * <p/>
  * This is my implementation of a double-ended, doubly-linked list.
- * <p>
+ * <p/>
  * NOTE: Contains DSAListNode at the end of the file as a private inner class.
  */
-public class DSALinkedList
+public class DSALinkedList<T>
 {
-    private DSAListNode head;                               //Keeps track of front of list
-    private DSAListNode tail;                               //Keeps track of back of list
+    private DSAListNode<T> head;                               //Keeps track of front of list
+    private DSAListNode<T> tail;                               //Keeps track of back of list
     private int count;                                      //Number of nodes in list
 
 
@@ -30,9 +30,9 @@ public class DSALinkedList
      *
      * @param newValue - Given to DSAListNode
      */
-    public void insertFirst( Object newValue )
+    public void insertFirst( T newValue )
     {
-        DSAListNode newNode = new DSAListNode( newValue );
+        DSAListNode<T> newNode = new DSAListNode<T>( newValue );
 
         if( isEmpty() )                                     //Link head and tail to newNode
         {
@@ -56,9 +56,9 @@ public class DSALinkedList
      *
      * @param newValue - Given to DSAListNode
      */
-    public void insertLast( Object newValue )
+    public void insertLast( T newValue )
     {
-        DSAListNode newNode = new DSAListNode( newValue );
+        DSAListNode<T> newNode = new DSAListNode<T>( newValue );
 
         if( isEmpty() )                                     //Link head and tail to newNode
         {
@@ -82,7 +82,7 @@ public class DSALinkedList
      * @return - Front value
      * @throws IllegalStateException
      */
-    public Object peekFirst() throws IllegalStateException
+    public T peekFirst() throws IllegalStateException
     {
         if( isEmpty() )
         {
@@ -99,7 +99,7 @@ public class DSALinkedList
      * @return - End value
      * @throws IllegalStateException
      */
-    public Object peekLast() throws IllegalStateException
+    public T peekLast() throws IllegalStateException
     {
         if( isEmpty() )
         {
@@ -116,14 +116,14 @@ public class DSALinkedList
      * @return - Value stored in first node
      * @throws IllegalStateException
      */
-    public Object removeFirst() throws IllegalStateException
+    public T removeFirst() throws IllegalStateException
     {
         if( isEmpty() )
         {
             throw new IllegalStateException( "Cannot removeFirst. List is empty" );
         }
 
-        Object nodeValue = head.value;
+        T nodeValue = head.value;
 
         if( head.next != null )                             //Unlink node
         {
@@ -148,14 +148,14 @@ public class DSALinkedList
      * @return - Value stored in last node
      * @throws IllegalStateException
      */
-    public Object removeLast() throws IllegalStateException
+    public T removeLast() throws IllegalStateException
     {
         if( isEmpty() )
         {
             throw new IllegalStateException( "Cannot removeLast. List is empty" );
         }
 
-        Object nodeValue = tail.value;
+        T nodeValue = tail.value;
 
         if( tail.prev != null )                             //Unlink node
         {
@@ -201,18 +201,18 @@ public class DSALinkedList
     /**
      * Class made private as it is only used by DSALinkedList.
      * This serves as an extra layer of abstraction.
-     * <p>
+     * <p/>
      * DSAListNode: Each instance will be a node in the linked list.
      * Each node will contain a reference to the next node, a reference to the
      * previous node and the actual value.
      */
-    private class DSAListNode
+    private class DSAListNode<E>
     {
         //All fields made public so visible to DSALinkedList,
         //and eliminates the need for accessors/mutators
-        public Object value;
-        public DSAListNode next;
-        public DSAListNode prev;
+        public E value;
+        public DSAListNode<E> next;
+        public DSAListNode<E> prev;
 
         /**
          * Alternate constructor imports an object and initialises
@@ -220,7 +220,7 @@ public class DSALinkedList
          *
          * @param inValue - Assigned to the value field
          */
-        public DSAListNode( Object inValue )
+        public DSAListNode( E inValue )
         {
             value = inValue;
             next = null;

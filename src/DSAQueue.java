@@ -3,11 +3,11 @@
  *
  * Implementation of a Queue using a Linked List
  */
-public class DSAQueue
+public class DSAQueue<T>
 {
     int maxElements;
     int numElements;                                                     //Returned in count()
-    DSALinkedList queue;
+    DSALinkedList<T> queue;
 
 
     /**
@@ -17,7 +17,7 @@ public class DSAQueue
     public DSAQueue()
     {
         maxElements = 100;
-        queue = new DSALinkedList();
+        queue = new DSALinkedList<T>();
         numElements = 0;
     }
 
@@ -36,7 +36,7 @@ public class DSAQueue
         }
 
         maxElements = inMaxElements;
-        queue = new DSALinkedList();
+        queue = new DSALinkedList<T>();
         numElements = 0;
     }
 
@@ -47,7 +47,7 @@ public class DSAQueue
      *
      * @param inVal - Value to insert
      */
-    public void enqueue( Object inVal )
+    public void enqueue( T inVal )
     {
         if( inVal == null )                             //Asserts object is not null
         {
@@ -69,9 +69,9 @@ public class DSAQueue
      *
      * @return - First value
      */
-    public Object dequeue()
+    public T dequeue()
     {
-        Object val;
+        T val;
 
         if( isEmpty() )                                 //Asserts queue is not empty
         {
@@ -91,7 +91,7 @@ public class DSAQueue
      *
      * @return - Front value
      */
-    public Object peek()
+    public T peek()
     {
         if( isEmpty() )                                 //Asserts queue is not empty
         {
