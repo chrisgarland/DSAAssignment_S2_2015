@@ -6,7 +6,7 @@
  */
 public abstract class StockRoom
 {
-    private static final int DEFAULT_LENGTH = 100;
+    private static final int DEFAULT_LENGTH = 10000;
 
     protected int maxElements;
     protected int numElements;

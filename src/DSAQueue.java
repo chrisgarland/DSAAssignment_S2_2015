@@ -16,7 +16,7 @@ public class DSAQueue<T>
      */
     public DSAQueue()
     {
-        maxElements = 100;
+        maxElements = 10000;
         queue = new DSALinkedList<T>();
         numElements = 0;
     }
