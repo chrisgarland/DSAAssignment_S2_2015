@@ -50,7 +50,58 @@ public class DistributionCentre
 
     public void receiveCartons()
     {
+        DSAHashTable cartonMap = new DSAHashTable( 2048 );
 
+        while( !cartonQueue.isEmpty() )
+        {
+            Carton cx = getCarton();
+        }
+    }
+
+
+    /**
+     * Responsible for extraxting the data for a single
+     * carton out of cartonQueue. Creates the carton and
+     * returns it.
+     *
+     * @return - Newly created carton
+     */
+    private Carton getCarton()
+    {
+        //Data for instantiating a carton
+        int consignmentNote = 0;
+        String productType = null;
+        String wholesalerName = null;
+        String warrantyDate = null;
+
+        Carton cx = null;
+
+        try                                                     //Extract carton data
+        {
+            consignmentNote = Integer.parseInt( cartonQueue.dequeue() );
+            productType = cartonQueue.dequeue();
+            wholesalerName = cartonQueue.dequeue();
+            warrantyDate = cartonQueue.dequeue();
+        }
+        catch( IllegalArgumentException e )
+        {
+            System.out.println( e.getMessage() );
+        }
+        catch( IllegalStateException e )
+        {
+            System.out.println(e.getMessage());
+        }
+
+        try                                                     //Create carton
+        {
+            cx = new Carton( consignmentNote, productType, wholesalerName, warrantyDate );
+        }
+        catch( IllegalArgumentException e )
+        {
+            System.out.println(e.getMessage());
+        }
+
+        return cx;
     }
 
 
