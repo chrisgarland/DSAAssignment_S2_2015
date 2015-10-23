@@ -49,11 +49,7 @@ public class DSAQueue<T>
      */
     public void enqueue( T inVal )
     {
-        if( inVal == null )                             //Asserts object is not null
-        {
-            throw new IllegalArgumentException( "Value provided must not be null" );
-        }
-        else if( isFull() )                             //Asserts queue is not full
+        if( isFull() )                             //Asserts queue is not full
         {
             throw new IllegalStateException( "Queue is full. Cannot enqueue value" );
         }

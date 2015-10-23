@@ -136,15 +136,58 @@ public class BankBuilder
     public void buildYard( int index )
     {
         int capacity = 0;
-        DSAQueue<Carton> tempYard new DSAQueue<Carton>();
+        int indexOfYard = 0;
+        DSAQueue<String> tempYard = new DSAQueue<String>();
         Yard yard;
+        String token;
+        Carton cx;
 
         try
         {
             while( !geoQueue.isEmpty() && frontNotALetter() )
             {
+                token = geoQueue.dequeue();
 
+                if( token.equals( ":" ) )
+                {
+                    capacity++;
+                }
+
+                tempYard.enqueue( token );
             }
+
+            yard = new Yard( capacity );
+
+            while( !tempYard.isEmpty() )
+            {
+                token = tempYard.dequeue();
+
+                if( token.equals( ":" ) && ( tempYard.isEmpty() || tempYard.peek().equals( ":" ) ) )
+                {
+                    indexOfYard++;
+                }
+                else
+                {
+                    cx = cartonMap.remove( token );
+
+                    yard.initialInsert( indexOfYard, cx );
+
+                    cx.setRowPosition( index );
+                    cx.setColumnPosition( indexOfYard );
+
+                    cartonMap.put( token, cx );
+
+                    indexOfYard++;
+                }
+            }
+        }
+        catch( IllegalArgumentException e )
+        {
+            System.out.println( e.getMessage() );
+        }
+        catch( IllegalStateException e )
+        {
+            System.out.println(e.getMessage());
         }
     }
 

@@ -5,6 +5,12 @@ import javax.naming.OperationNotSupportedException;
  */
 public class Yard extends StockRoom
 {
+    public Yard( int maxCapacity )
+    {
+        super( maxCapacity );
+    }
+
+
     @Override
     public void insert( Carton inValue ) throws IllegalArgumentException, IllegalStateException
     {
@@ -36,9 +42,49 @@ public class Yard extends StockRoom
         {
             throw new IllegalStateException( "Value was not inserted into Yard" );
         }
-
-        //return index?
     }
+
+
+    public void initialInsert( int index, Carton value )
+    {
+        storageBank[index] = value;
+    }
+
+
+    public int put( Carton inValue )
+    {
+        boolean insertSuccessful = false;
+        int index = 0;
+
+        if( inValue == null )
+        {
+            throw new IllegalArgumentException( "Null value provided" );
+        }
+        if( isFull() )
+        {
+            throw new IllegalStateException( "Yard is full. Cannot insert value" );
+        }
+
+        while( !( insertSuccessful ) )
+        {
+            if( storageBank[index] == null )
+            {
+                storageBank[index] = inValue;
+                numElements++;
+                insertSuccessful = true;
+            }
+
+            index++;
+        }
+
+        if( !( insertSuccessful ) )
+        {
+            throw new IllegalStateException( "Value was not inserted into Yard" );
+        }
+
+        return index;
+    }
+
 
     /**
      * Needs work
