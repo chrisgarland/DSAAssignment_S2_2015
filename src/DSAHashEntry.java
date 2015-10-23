@@ -57,6 +57,12 @@ public class DSAHashEntry
 
 //Mutators:
 
+
+    public void setKey( String key )
+    {
+        this.key = key;
+    }
+
     public void setValue( Object value )
     {
         this.value = value;

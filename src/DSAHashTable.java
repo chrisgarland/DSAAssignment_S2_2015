@@ -10,8 +10,8 @@ public class DSAHashTable
     private static final double MAX_LOAD_FACTOR = 0.5;
 
     private DSAHashEntry[] m_hashTable;
-    private int numElements;
-    private int size;                                                   //Total length of array
+    private double numElements;
+    private double size;                                                 //Total length of array
 
 
     /**
@@ -168,6 +168,8 @@ public class DSAHashTable
                 found = true;
                 value = m_hashTable[index].getValue();                  //Grab value
                 m_hashTable[index].setState( FORMERLY_USED );           //Unlink entry from table
+                m_hashTable[index].setKey( "" );
+                m_hashTable[index].setValue( null );
             }
             else                                                        //Collision
             {
@@ -190,14 +192,14 @@ public class DSAHashTable
      */
     private int hash( String key )
     {
-        int index = 0;
+        long index = 0;
 
         for( int ii = 0; ii < key.length(); ii++ )
         {
-            index = ( 33 * index ) + key.charAt( ii );                  //Actual hashing gets done here.
+            index = ( 5 * index ) + key.charAt( ii );                   //Actual hashing gets done here.
         }
 
-        return index % getTableSize();                                  //Never larger than table length
+        return (int) index % getTableSize();                            //Never larger than table length
     }
 
 
@@ -237,7 +239,7 @@ public class DSAHashTable
         boolean containsKey = false;
         int index = hash( key );
 
-        while( m_hashTable[index].getState() != NEVER_USED )            //Loop until state = never used
+        if( m_hashTable[index].getState() != NEVER_USED )            //Loop until state = never used
         {
             if( m_hashTable[index].getKey().equals( key ) )             //Keys match
             {
@@ -355,7 +357,9 @@ public class DSAHashTable
      */
     private double currentLoadFactor()
     {
-        return count() / getTableSize();
+        double currentLoadFactor = numElements / size;
+
+        return currentLoadFactor;
     }
 
 
@@ -383,13 +387,14 @@ public class DSAHashTable
     private void reSize()
     {
         int newSize = nextPrime( getTableSize() * 2 );
+        size = newSize;
 
         DSAHashEntry[] oldTable = m_hashTable;
         m_hashTable = new DSAHashEntry[newSize];
 
         initialiseTable();
 
-        for( int ii = 0; ii < oldTable.length - 1; ii++ )
+        for( int ii = 0; ii < oldTable.length; ii++ )
         {
             if( oldTable[ii].getState() == USED )
             {
@@ -397,21 +402,21 @@ public class DSAHashTable
             }
         }
 
-        System.out.println("Table re-sized");
+        System.out.println("Table re-sized to a length of: " + getTableSize());
     }
 
 
 //Accessors:
 
-    private int count()
+    public int count()
     {
-        return numElements;
+        return (int) numElements;
     }
 
 
-    private int getTableSize()
+    public int getTableSize()
     {
-        return size;
+        return (int) size;
     }
 }
 
