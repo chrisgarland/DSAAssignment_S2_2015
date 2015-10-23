@@ -96,7 +96,7 @@ public class DescriptionReader
     public DSAQueue<String> readCartonSection()
     {
         DSAQueue<String> cartonQueue = new DSAQueue<String>();      //Filled and returned by method
-        StringTokenizer lineTokeizer;
+        StringTokenizer lineTokenizer;
         String line, token;
         char checkToken;
 
@@ -106,8 +106,8 @@ public class DescriptionReader
 
             if( !line.isEmpty() )
             {
-                lineTokeizer = new StringTokenizer( line, ":", false );
-                token = lineTokeizer.nextToken();
+                lineTokenizer = new StringTokenizer( line, ":", false );
+                token = lineTokenizer.nextToken();
                 checkToken = token.charAt( 0 );
 
                 do
@@ -120,9 +120,9 @@ public class DescriptionReader
                     tokenEnqueue( token, cartonQueue );
                     numCartons++;
 
-                    token = lineTokeizer.nextToken();
+                    token = lineTokenizer.nextToken();
 
-                } while( lineTokeizer.hasMoreTokens() );
+                } while( lineTokenizer.hasMoreTokens() );
 
                 if( !token.equals( "#" ) && !token.equals( "%" ) )
                 {
