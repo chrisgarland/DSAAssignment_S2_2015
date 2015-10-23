@@ -13,7 +13,8 @@ public class DescriptionReader
 
 
     /**
-     * Alternate constructor
+     * Alternate constructor initialises all
+     * member fields.
      *
      * @param descriptionFile - Provided by user
      */
@@ -84,29 +85,70 @@ public class DescriptionReader
         return geoQueue;
     }
 
+    /**
+     * Responsible for breaking the carton section
+     * into individual tokens and storing them in a queue.
+     * Uses fileScanner to break file into lines, and lineTokenizer
+     * to break each line into tokens.
+     *
+     * @return - Queue of individual tokens
+     */
     public DSAQueue<String> readCartonSection()
     {
         DSAQueue<String> cartonQueue = new DSAQueue<String>();      //Filled and returned by method
+        StringTokenizer lineTokeizer;
+        String line, token;
+        char checkToken;
 
-        //Needs implementation
+        while( fileScanner.hasNextLine() )
+        {
+            line = fileScanner.nextLine();
+
+            if( !line.isEmpty() )
+            {
+                lineTokeizer = new StringTokenizer( line, ":", false );
+                token = lineTokeizer.nextToken();
+                checkToken = token.charAt( 0 );
+
+                do
+                {
+                    if( checkToken == '#' || checkToken == '%' )
+                    {
+                        break;
+                    }
+
+                    tokenEnqueue( token, cartonQueue );
+                    numCartons++;
+
+                    token = lineTokeizer.nextToken();
+
+                } while( lineTokeizer.hasMoreTokens() );
+
+                if( !token.equals( "#" ) && !token.equals( "%" ) )
+                {
+                    tokenEnqueue( token, cartonQueue );
+                    numCartons++;
+                }
+            }
+        }
 
         return cartonQueue;
     }
 
 
-    private void tokenEnqueue( String token, DSAQueue<String> geoQueue )
+    private void tokenEnqueue( String token, DSAQueue<String> inQueue )
     {
         try
         {
-            geoQueue.enqueue( token );
+            inQueue.enqueue( token );
         }
         catch( IllegalArgumentException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
         catch( IllegalStateException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
     }
 
