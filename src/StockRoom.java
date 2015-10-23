@@ -10,7 +10,7 @@ public abstract class StockRoom
 
     protected int maxElements;
     protected int numElements;
-    protected Object[] storageBank;
+    protected Carton[] storageBank;
 
 
 //Constructors: Called by subclasses
@@ -23,7 +23,7 @@ public abstract class StockRoom
     {
         numElements = 0;
         maxElements = DEFAULT_LENGTH;
-        storageBank = new Object[DEFAULT_LENGTH];
+        storageBank = new Carton[DEFAULT_LENGTH];
     }
 
 
@@ -36,13 +36,13 @@ public abstract class StockRoom
     {
         setMaxElements( maxElements );                          //Exceptions handled in mutators
         numElements = 0;
-        storageBank = new Object[maxElements];
+        storageBank = new Carton[maxElements];
     }
 
 
 //Abstract Methods: Overridden in subclasses
 
-    public abstract void insert( Object inValue );
+    public abstract void insert( Carton inValue );
 
     public abstract Object remove();
 

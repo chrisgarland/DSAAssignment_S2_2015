@@ -6,7 +6,7 @@ import javax.naming.OperationNotSupportedException;
 public class Yard extends StockRoom
 {
     @Override
-    public void insert( Object inValue ) throws IllegalArgumentException, IllegalStateException
+    public void insert( Carton inValue ) throws IllegalArgumentException, IllegalStateException
     {
         boolean insertSuccessful = false;
         int index = 0;
@@ -43,7 +43,7 @@ public class Yard extends StockRoom
      * @return
      */
     @Override
-    public Object remove()
+    public Carton remove()
     {
         try
         {
@@ -57,14 +57,14 @@ public class Yard extends StockRoom
     }
 
     @Override
-    public Object peek()
+    public Carton peek()
     {
         return null;                            //Needs implementation
     }
 
-    public Object remove( int index ) throws IllegalStateException
+    public Carton remove( int index ) throws IllegalStateException
     {
-        Object value;
+        Carton value;
 
         if( isEmpty() )
         {

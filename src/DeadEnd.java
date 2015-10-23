@@ -32,14 +32,14 @@ public class DeadEnd extends StockRoom
      * Imports an object and pushes onto
      * storageBank.
      *
-     * @param inVal - Object to be pushed
+     * @param inVal - Carton to be pushed
      * @throws IllegalArgumentException
      * @throws IllegalStateException
      */
     @Override
-    public void insert( Object inVal ) throws IllegalArgumentException, IllegalStateException
+    public void insert( Carton inVal ) throws IllegalArgumentException, IllegalStateException
     {
-        if( inVal == null )                             //Assert valid Object provided
+        if( inVal == null )                             //Assert valid Carton provided
         {
             throw new IllegalArgumentException( "Provided value must not be null" );
         }
@@ -62,7 +62,7 @@ public class DeadEnd extends StockRoom
      * @throws IllegalStateException
      */
     @Override
-    public Object remove() throws IllegalStateException
+    public Carton remove() throws IllegalStateException
     {
         if( isEmpty() )
         {
@@ -83,7 +83,7 @@ public class DeadEnd extends StockRoom
      * @throws IllegalStateException
      */
     @Override
-    public Object peek() throws IllegalStateException
+    public Carton peek() throws IllegalStateException
     {
         if( isEmpty() )
         {

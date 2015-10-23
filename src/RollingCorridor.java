@@ -34,7 +34,7 @@ public class RollingCorridor extends StockRoom
      * @throws IllegalArgumentException
      * @throws IllegalStateException
      */
-    public void insert( Object inVal ) throws IllegalArgumentException, IllegalStateException
+    public void insert( Carton inVal ) throws IllegalArgumentException, IllegalStateException
     {
         if( inVal == null )                             //Asserts object is not null
         {
@@ -58,9 +58,9 @@ public class RollingCorridor extends StockRoom
      * @return - First value
      * @throws IllegalStateException
      */
-    public Object remove() throws IllegalStateException
+    public Carton remove() throws IllegalStateException
     {
-        Object val;
+        Carton val;
 
         if( isEmpty() )                                 //Asserts storageBank is not empty
         {
@@ -84,7 +84,7 @@ public class RollingCorridor extends StockRoom
      * @return - Front value
      * @throws IllegalStateException
      */
-    public Object peek() throws IllegalStateException
+    public Carton peek() throws IllegalStateException
     {
         if( isEmpty() )                                 //Asserts storageBank is not empty
         {
