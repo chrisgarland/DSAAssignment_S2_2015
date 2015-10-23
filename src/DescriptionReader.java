@@ -27,7 +27,7 @@ public class DescriptionReader
         }
         catch( IOException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
     }
 
@@ -42,16 +42,47 @@ public class DescriptionReader
      */
     public DSAQueue<String> readGeoSection()
     {
-        DSAQueue<String> geoQueue = new DSAQueue<String>();               //Filled and returned by this method
-        StringTokenizer lineTokenizer;                               //Breaks each line into individual tokens
+        DSAQueue<String> geoQueue = new DSAQueue<String>();         //Filled and returned by this method
+        StringTokenizer lineTokenizer;                              //Breaks each line into individual tokens
         String line;                                                 //Each line provided by fileScanner
-        String token;
+        String token = null;                                        //Individual tokens of a line
 
+        while( fileScanner.hasNextLine() && !"%".equals( token ) )  //Only read geometry section
+        {
+            line = fileScanner.nextLine();
 
+            if( !line.isEmpty() )                                   //Ignore empty lines
+            {
+                lineTokenizer = new StringTokenizer( line, ": \\s", true );
+                token = lineTokenizer.nextToken();
+
+                do
+                {
+                    if( token.equals( "#" ) || token.equals( "%" ) )//Ignore comment lines
+                    {
+                        break;
+                    }
+                    if( token.equals( "D" ) || token.equals( "R" ) || token.equals( "Y" ) )
+                    {
+                        numStockRooms++;
+                    }
+
+                    //Private method below, catches exceptions
+                    tokenEnqueue( token, geoQueue );                //Add token to geoQueue. Private method below
+
+                    token = lineTokenizer.nextToken();              //Grab next token
+                }
+                while( lineTokenizer.hasMoreTokens() );
+
+                if( !token.equals( "#" ) && !token.equals( "%" ) )
+                {
+                    tokenEnqueue( token, geoQueue );                //Add last line token to queue
+                }
+            }
+        }
 
         return geoQueue;
     }
-
 
     public DSAQueue<String> readCartonSection()
     {
@@ -60,6 +91,23 @@ public class DescriptionReader
         //Needs implementation
 
         return cartonQueue;
+    }
+
+
+    private void tokenEnqueue( String token, DSAQueue<String> geoQueue )
+    {
+        try
+        {
+            geoQueue.enqueue( token );
+        }
+        catch( IllegalArgumentException e )
+        {
+            System.out.println(e.getMessage());
+        }
+        catch( IllegalStateException e )
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
 
