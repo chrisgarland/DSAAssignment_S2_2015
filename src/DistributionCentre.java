@@ -38,13 +38,19 @@ public class DistributionCentre
     {
         DescriptionReader dr = new DescriptionReader( descriptionFile );
 
-        DSAQueue<String> geoQueue = dr.readGeoSection();
-        DSAQueue<String> cartonQueue = dr.readCartonSection();
+        geoQueue = dr.readGeoSection();                             //Individual tokens of the geometry section
+        cartonQueue = dr.readCartonSection();                       //Individual tokens of the Carton section
 
         numStockRooms = dr.getNumStockRooms();
         numCartons = dr.getNumCartons();
 
         dr.close();
+    }
+
+
+    public void receiveCartons()
+    {
+
     }
 
 

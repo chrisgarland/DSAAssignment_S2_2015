@@ -402,7 +402,7 @@ public class DSAHashTable
             }
         }
 
-        System.out.println("Table re-sized to a length of: " + getTableSize());
+//        System.out.println("Table re-sized to a length of: " + getTableSize());
     }
 
 

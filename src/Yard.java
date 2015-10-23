@@ -36,6 +36,8 @@ public class Yard extends StockRoom
         {
             throw new IllegalStateException( "Value was not inserted into Yard" );
         }
+
+        //return index?
     }
 
     /**
