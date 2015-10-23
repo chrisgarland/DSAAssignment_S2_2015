@@ -47,7 +47,7 @@ public class DSAHashTable
      * @param value - Provided by user
      * @throws IllegalStateException
      */
-    public void put( String key, Object value ) throws IllegalStateException
+    public void put( String key, Carton value ) throws IllegalStateException
     {
         DSAHashEntry entry = null;
 
@@ -150,9 +150,9 @@ public class DSAHashTable
      * @return - Value at provided key
      * @throws IllegalArgumentException
      */
-    public Object remove( String key ) throws IllegalArgumentException
+    public Carton remove( String key ) throws IllegalArgumentException
     {
-        Object value = null;                                            //To be returned
+        Carton value = null;                                            //To be returned
         int index = hash( key );                                        //Initial index
         boolean found = false;                                          //while loop
 

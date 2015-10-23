@@ -4,12 +4,14 @@
 public class Carton
 {
     private static final String NO_EXPIRY = "0000-00-00";
+    private static final int NO_POSITION = -1;
 
     private int consignmentNote;
     private String productType;
     private String wholesalerName;
     private String warrantyDate;
-
+    private int rowPosition;
+    private int columnPosition;
 
     /**
      * Alternate constructor calls validateParameters() before
@@ -35,8 +37,9 @@ public class Carton
         setProductType( productType );
         setWholesalerName( wholesalerName );
         setWarrantyDate( warrantyDate );
+        setRowPosition( NO_POSITION );
+        setColumnPosition( NO_POSITION );
     }
-
 
 //Accessors:
 
@@ -55,11 +58,21 @@ public class Carton
         return wholesalerName;
     }
 
+
     public String getWarrantyDate()
     {
         return warrantyDate;
     }
 
+    public int getRowPosition()
+    {
+        return rowPosition;
+    }
+
+    public int getColumnPosition()
+    {
+        return columnPosition;
+    }
 
 //Mutators: Exceptions are handled in constructor
 
@@ -67,6 +80,7 @@ public class Carton
     {
         this.consignmentNote = consignmentNote;
     }
+
 
     public void setProductType( String productType )
     {
@@ -83,8 +97,18 @@ public class Carton
         this.warrantyDate = warrantyDate;
     }
 
+    public void setRowPosition( int rowPosition )
+    {
+        this.rowPosition = rowPosition;
+    }
 
-//Public methods:
+    public void setColumnPosition( int columnPosition )
+    {
+        this.columnPosition = columnPosition;
+    }
+
+
+//Public supporting methods:
 
     /**
      * If warrantyDate is "0000-00-00" (NO_EXPIRY),
@@ -99,7 +123,7 @@ public class Carton
     }
 
 
-//Private methods:
+//Private supporting methods:
 
     /**
      * Purely for exception handling purposes.

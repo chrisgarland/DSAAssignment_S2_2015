@@ -45,7 +45,7 @@ public class DescriptionReader
     {
         DSAQueue<String> geoQueue = new DSAQueue<String>();         //Filled and returned by this method
         StringTokenizer lineTokenizer;                              //Breaks each line into individual tokens
-        String line;                                                 //Each line provided by fileScanner
+        String line;                                                //Each line provided by fileScanner
         String token = null;                                        //Individual tokens of a line
 
         while( fileScanner.hasNextLine() && !"%".equals( token ) )  //Only read geometry section
@@ -96,15 +96,15 @@ public class DescriptionReader
     public DSAQueue<String> readCartonSection()
     {
         DSAQueue<String> cartonQueue = new DSAQueue<String>();      //Filled and returned by method
-        StringTokenizer lineTokenizer;
-        String line, token;
-        char checkToken;
+        StringTokenizer lineTokenizer;                              //Breaks each line into individual tokens
+        String line, token;                                         //Each line provided by fileScanner
+        char checkToken;                                            //Used as a condition in an if statement
 
         while( fileScanner.hasNextLine() )
         {
             line = fileScanner.nextLine();
 
-            if( !line.isEmpty() )
+            if( !line.isEmpty() )                                   //Ignore empty lines
             {
                 lineTokenizer = new StringTokenizer( line, ":", false );
                 token = lineTokenizer.nextToken();
@@ -112,12 +112,12 @@ public class DescriptionReader
 
                 do
                 {
-                    if( checkToken == '#' || checkToken == '%' )
+                    if( checkToken == '#' || checkToken == '%' )    //Ignore commenting lines
                     {
                         break;
                     }
 
-                    tokenEnqueue( token, cartonQueue );
+                    tokenEnqueue( token, cartonQueue );             //Private method below
                     numCartons++;
 
                     token = lineTokenizer.nextToken();
@@ -126,7 +126,7 @@ public class DescriptionReader
 
                 if( !token.equals( "#" ) && !token.equals( "%" ) )
                 {
-                    tokenEnqueue( token, cartonQueue );
+                    tokenEnqueue( token, cartonQueue );             //Enqueue last token
                     numCartons++;
                 }
             }
@@ -136,6 +136,12 @@ public class DescriptionReader
     }
 
 
+    /**
+     * Responsible for pushing a token into a queue
+     *
+     * @param token - Provided by caller
+     * @param inQueue - Provided by caller
+     */
     private void tokenEnqueue( String token, DSAQueue<String> inQueue )
     {
         try

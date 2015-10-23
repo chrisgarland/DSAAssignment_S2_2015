@@ -6,9 +6,10 @@ import java.io.File;
 public class DistributionCentre
 {
     private int numStockRooms, numCartons;
-    private DSAQueue<String> geoQueue;
-    private DSAQueue<String> cartonQueue;
-    StockRoom[] m_bank;
+    private DSAQueue<String> geoQueue;                              //Holds tokens from the geo section of desc file
+    private DSAQueue<String> cartonQueue;                           //Holds tokens from the carton section of file
+    StockRoom[] m_bank;                                             //Master array for holding all stock rooms
+    DSAHashTable cartonMap;                                         //For storing cartons as they are created
 
 
     /**
@@ -22,6 +23,7 @@ public class DistributionCentre
         geoQueue = new DSAQueue<String>();
         cartonQueue = new DSAQueue<String>();
         m_bank = null;
+        cartonMap = new DSAHashTable( 2048 );                       //Twice the size of max num cartons
     }
 
 
@@ -48,19 +50,76 @@ public class DistributionCentre
     }
 
 
+    /**
+     * Responsible for creating cartons and storing them
+     * inside a hash table. Also increments numCartons
+     */
     public void receiveCartons()
     {
-        DSAHashTable cartonMap = new DSAHashTable( 2048 );
-
         while( !cartonQueue.isEmpty() )
         {
-            Carton cx = getCarton();
+            Carton cx = getCarton();                                //Private method below
+
+            try
+            {
+                String key = String.valueOf( cx.getConsignmentNote() );//Use (String)consignmentNote as key
+
+                cartonMap.put( key, cx );                           //Map carton
+                numCartons++;
+            }
+            catch( IllegalArgumentException e )
+            {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
 
     /**
-     * Responsible for extraxting the data for a single
+     * Responsible for building the storage rooms.
+     * Calls upon BankBuilder{} to do so. All storage
+     * rooms are stored in m_bank (master array).
+     *
+     * @throws IllegalArgumentException
+     */
+    public void buildBanks() throws IllegalArgumentException
+    {
+        String temp;
+        char bankType;
+
+        m_bank = new StockRoom[numStockRooms];                      //Master array for storing stock rooms
+
+        BankBuilder bankBuilder = new BankBuilder(geoQueue, cartonMap, m_bank);
+
+        for( int index = 0; index < numStockRooms; index++ )
+        {
+            temp = geoQueue.dequeue().toUpperCase();                //Case insensitive
+            bankType = temp.charAt( 0 );
+
+            switch( bankType )
+            {
+                case 'D':
+                    bankBuilder.buildDead( index );
+                    break;
+
+                case 'R':
+                    bankBuilder.buildRoller( index );
+                    break;
+
+                case 'Y':
+                    bankBuilder.buildYard( index );
+                    break;
+
+                default:
+                    throw new IllegalArgumentException( "Error building Store Rooms" );
+
+            }
+        }
+    }
+
+
+    /**
+     * Responsible for extracting the data for a single
      * carton out of cartonQueue. Creates the carton and
      * returns it.
      *

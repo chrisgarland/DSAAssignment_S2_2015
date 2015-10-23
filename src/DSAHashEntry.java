@@ -7,7 +7,7 @@ public class DSAHashEntry
     private static final int USED = 1;
 
     private String key;
-    private Object value;
+    private Carton value;
     private int state;                                      //0 = never used; 1 = used; -1 = formerly used
 
     public DSAHashEntry()
@@ -18,7 +18,7 @@ public class DSAHashEntry
     }
 
 
-    public DSAHashEntry( String inKey, Object inVal )
+    public DSAHashEntry( String inKey, Carton inVal )
     {
         if( inKey.isEmpty() )
         {
@@ -43,7 +43,7 @@ public class DSAHashEntry
     }
 
 
-    public Object getValue()
+    public Carton getValue()
     {
         return value;
     }
@@ -63,7 +63,7 @@ public class DSAHashEntry
         this.key = key;
     }
 
-    public void setValue( Object value )
+    public void setValue( Carton value )
     {
         this.value = value;
     }

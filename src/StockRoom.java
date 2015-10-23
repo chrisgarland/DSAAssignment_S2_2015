@@ -44,9 +44,9 @@ public abstract class StockRoom
 
     public abstract void insert( Carton inValue );
 
-    public abstract Object remove();
+    public abstract Carton remove();
 
-    public abstract Object peek();
+    public abstract Carton peek();
 
 
 /*All following methods have common implementation for all subclasses*/
