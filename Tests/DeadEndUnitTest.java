@@ -22,9 +22,9 @@ public class DeadEndUnitTest
         default_stack = new DeadEnd();
         alternate_stack = new DeadEnd( 10 );
 
-        default_stack.insert( INTEGER_1 );
-        default_stack.insert( INTEGER_2 );
-        default_stack.insert( NAME_STRING );
+//        default_stack.insert( INTEGER_1 );
+//        default_stack.insert( INTEGER_2 );
+//        default_stack.insert( NAME_STRING );
     }
 
     @After
@@ -88,7 +88,7 @@ public class DeadEndUnitTest
     {
         for( Integer ii = 0; ii < 10; ii++ )
         {
-            alternate_stack.insert( ii );
+//            alternate_stack.insert( ii );
         }
     }
 }

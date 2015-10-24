@@ -22,9 +22,9 @@ public class RollingCorridorUnitTest
         default_queue = new RollingCorridor();
         alternate_queue = new RollingCorridor( 10 );
 
-        default_queue.insert( INTEGER_1 );
-        default_queue.insert( INTEGER_2 );
-        default_queue.insert( NAME_STRING );
+//        default_queue.insert( INTEGER_1 );
+//        default_queue.insert( INTEGER_2 );
+//        default_queue.insert( NAME_STRING );
     }
 
     @After
@@ -87,7 +87,7 @@ public class RollingCorridorUnitTest
     {
         for( Integer ii = 0; ii < 10; ii++ )
         {
-            alternate_queue.insert( ii );
+//            alternate_queue.insert( ii );
         }
     }
 }
