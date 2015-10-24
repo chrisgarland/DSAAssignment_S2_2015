@@ -8,7 +8,10 @@ import java.util.StringTokenizer;
  */
 public class DescriptionReader
 {
-    private int numStockRooms, numCartons;
+    private static final int HASH = 35;
+    private static final int PERCENT = 37;
+
+    private int numStockRooms;
     private Scanner fileScanner;                                    //For breaking a file into individual lines
 
 
@@ -24,7 +27,6 @@ public class DescriptionReader
         {
             fileScanner = new Scanner( descriptionFile );
             numStockRooms = 0;
-            numCartons = 0;
         }
         catch( IOException e )
         {
@@ -110,24 +112,20 @@ public class DescriptionReader
                 token = lineTokenizer.nextToken();
                 checkToken = token.charAt( 0 );
 
-                do
+                if( checkToken != '#' && checkToken != '%' )    //Ignore commenting lines
                 {
-                    if( checkToken == '#' || checkToken == '%' )    //Ignore commenting lines
+                    do
                     {
-                        break;
+                        tokenEnqueue( token, cartonQueue );             //Private method below
+
+                        token = lineTokenizer.nextToken();
+
+                    } while( lineTokenizer.hasMoreTokens() );
+
+                    if( !token.equals( "#" ) && !token.equals( "%" ) )
+                    {
+                        tokenEnqueue( token, cartonQueue );             //Enqueue last token
                     }
-
-                    tokenEnqueue( token, cartonQueue );             //Private method below
-                    numCartons++;
-
-                    token = lineTokenizer.nextToken();
-
-                } while( lineTokenizer.hasMoreTokens() );
-
-                if( !token.equals( "#" ) && !token.equals( "%" ) )
-                {
-                    tokenEnqueue( token, cartonQueue );             //Enqueue last token
-                    numCartons++;
                 }
             }
         }
@@ -169,14 +167,6 @@ public class DescriptionReader
         return numStockRooms;
     }
 
-
-    /**
-     * @return - Number of cartons
-     */
-    public int getNumCartons()
-    {
-        return numCartons;
-    }
 
 
 //Cleanup:

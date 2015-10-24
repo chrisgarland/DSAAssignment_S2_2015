@@ -44,7 +44,6 @@ public class DistributionCentre
         cartonQueue = dr.readCartonSection();                       //Individual tokens of the Carton section
 
         numStockRooms = dr.getNumStockRooms();
-        numCartons = dr.getNumCartons();
 
         dr.close();
     }
@@ -68,6 +67,10 @@ public class DistributionCentre
                 numCartons++;
             }
             catch( IllegalArgumentException e )
+            {
+                System.out.println( e.getMessage() );
+            }
+            catch( IllegalStateException e )
             {
                 System.out.println(e.getMessage());
             }
