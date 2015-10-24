@@ -162,9 +162,12 @@ public class BankBuilder
             {
                 token = tempYard.dequeue();
 
-                if( token.equals( ":" ) && ( tempYard.isEmpty() || tempYard.peek().equals( ":" ) ) )
+                if( token.equals( ":" ) )
                 {
-                    indexOfYard++;
+                    if( tempYard.isEmpty() || tempYard.peek().equals( ":" ) )
+                    {
+                        indexOfYard++;
+                    }
                 }
                 else
                 {
@@ -180,6 +183,8 @@ public class BankBuilder
                     indexOfYard++;
                 }
             }
+
+            m_bank[index] = yard;
         }
         catch( IllegalArgumentException e )
         {

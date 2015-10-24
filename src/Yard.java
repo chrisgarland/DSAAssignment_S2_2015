@@ -86,8 +86,24 @@ public class Yard extends StockRoom
     }
 
 
+    public Carton remove( int index ) throws IllegalStateException
+    {
+        if( isEmpty() )
+        {
+            throw new IllegalStateException( "Yard is empty. Cannot remove element" );
+        }
+
+        Carton value = storageBank[index];
+        storageBank[index] = null;
+
+        numElements--;
+
+        return value;
+    }
+
+
     /**
-     * Needs work
+     * Needs work.
      * @return
      */
     @Override
@@ -110,18 +126,28 @@ public class Yard extends StockRoom
         return null;                            //Needs implementation
     }
 
-    public Carton remove( int index ) throws IllegalStateException
+    @Override
+    public String toString()
     {
-        Carton value;
+        String fullString = "Y:";
 
-        if( isEmpty() )
+        for( int ii = 0; ii < getMaxElements(); ii++ )
         {
-            throw new IllegalStateException( "Yard is empty. Cannot remove element" );
+            if( storageBank[ii] != null )
+            {
+                fullString += storageBank[ii].getConsignmentNote();
+
+                if( ii < getMaxElements() - 1 )
+                {
+                    fullString += ":";
+                }
+            }
+            else
+            {
+                fullString += ":";
+            }
         }
 
-        value = storageBank[index];
-        numElements--;
-
-        return value;
+        return fullString;
     }
 }

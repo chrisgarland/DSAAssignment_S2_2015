@@ -122,7 +122,7 @@ public class DSAHashTable
 
         if( !containsKey( key ) )
         {
-            throw new IllegalArgumentException( "Key: \"" + key + "\" not found" );
+            throw new IllegalArgumentException( "Key: \"" + key + "\" not found. Possible error in description file" );
         }
 
         while( !found )                                                 //Loop until key is found
@@ -158,7 +158,7 @@ public class DSAHashTable
 
         if( !containsKey( key ) )
         {
-            throw new IllegalArgumentException( "Key: \"" + key + "\" not found" );
+            throw new IllegalArgumentException( "Key: \"" + key + "\" not found. Possible error in description file..." );
         }
 
         while( !found )                                                 //Loop until key is found

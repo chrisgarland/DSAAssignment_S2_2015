@@ -164,4 +164,10 @@ public class Carton
             throw new IllegalArgumentException( "No Warranty Date provided" );
         }
     }
+
+    @Override
+    public String toString()
+    {
+        return  consignmentNote + ":" + warrantyDate + ":" + productType + ":" + wholesalerName;
+    }
 }

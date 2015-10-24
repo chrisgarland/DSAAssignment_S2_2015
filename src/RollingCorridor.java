@@ -107,4 +107,25 @@ public class RollingCorridor extends StockRoom
             storageBank[ii] = storageBank[ii + 1];
         }
     }
+
+    @Override
+    public String toString()
+    {
+        String fullString = "R:";
+        int numColonsToAdd = getMaxElements() - ( count() + 1 );
+        int ii;
+
+        for( ii = 0; ii < count(); ii++ )
+        {
+            fullString += storageBank[ii].getConsignmentNote();
+            fullString += ":";
+        }
+
+        for( ii = 0; ii < numColonsToAdd; ii++ )
+        {
+            fullString += ":";
+        }
+
+        return fullString;
+    }
 }

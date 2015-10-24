@@ -93,4 +93,25 @@ public class DeadEnd extends StockRoom
         return storageBank[numElements - 1];                  //Last pushed value
     }
 
+
+    @Override
+    public String toString()
+    {
+        String fullString = "D:";
+        int numColonsToAdd = getMaxElements() - ( count() + 1 );
+        int ii;
+
+        for( ii = 0; ii < count(); ii++ )
+        {
+            fullString += storageBank[ii].getConsignmentNote();
+            fullString += ":";
+        }
+
+        for( ii = 0; ii < numColonsToAdd; ii++ )
+        {
+            fullString += ":";
+        }
+
+        return fullString;
+    }
 }

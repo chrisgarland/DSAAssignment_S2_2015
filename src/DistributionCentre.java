@@ -121,6 +121,12 @@ public class DistributionCentre
     }
 
 
+    public void describe( String inFileName )
+    {
+        DescriptionWriter dw = new DescriptionWriter( inFileName, this );
+    }
+
+
     /**
      * Responsible for extracting the data for a single
      * carton out of cartonQueue. Creates the carton and
