@@ -14,6 +14,11 @@ public class DSAAssignment
             d1.readDescription( desc );
             d1.receiveCartons();
             d1.buildBanks();
+
+            for( int ii = 0; ii < d1.m_bank.length; ii++ )
+            {
+                System.out.println( d1.m_bank[ii].toString() );
+            }
         }
         catch(ArrayIndexOutOfBoundsException e )
         {
