@@ -26,6 +26,8 @@ public class TaskManager
 
         cx = getCarton( lineTok );
 
+        System.out.println("============\nAdd:\n");
+
         if( cx.hasLifetimeWarranty() )
         {
             addToDead( cx );
@@ -60,6 +62,8 @@ public class TaskManager
                 throw new IllegalStateException( "Distribution Centre is full" );
             }
         }
+
+        System.out.println("\n============");
     }
 
     public void search( String taskLine )
@@ -91,7 +95,7 @@ public class TaskManager
             {
                 insertCarton( cx, ii );
 
-                System.out.println(cx.getRowPosition() + ":" + cx.getColumnPosition());
+                System.out.print(cx.getRowPosition() + ":" + cx.getColumnPosition());
 
                 mapCarton( cx );
             }
@@ -119,7 +123,7 @@ public class TaskManager
             {
                 insertCarton( cx, ii );
 
-                System.out.println(cx.getRowPosition() + ":" + cx.getColumnPosition());
+                System.out.print(cx.getRowPosition() + ":" + cx.getColumnPosition());
 
                 mapCarton( cx );
             }
@@ -150,7 +154,7 @@ public class TaskManager
                 cx.setRowPosition( ii );
                 cx.setColumnPosition( colPosition );
 
-                System.out.println(cx.getRowPosition() + ":" + cx.getColumnPosition());
+                System.out.print(cx.getRowPosition() + ":" + cx.getColumnPosition());
 
                 mapCarton( cx );
             }
@@ -212,7 +216,7 @@ public class TaskManager
         productType = lineTok.nextToken();
         wholesalerName = lineTok.nextToken();
 
-        cx = new Carton( consignmentNote, warrantyDate, productType, wholesalerName );
+        cx = new Carton( consignmentNote, productType, wholesalerName, warrantyDate );
 
         return cx;
     }

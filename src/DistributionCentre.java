@@ -127,7 +127,7 @@ public class DistributionCentre
     }
 
 
-    public void doTask( File taskFile )
+    public void doTasks( File taskFile )
     {
         Scanner fileScanner = null;
 
