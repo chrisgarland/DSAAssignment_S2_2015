@@ -143,6 +143,12 @@ public class DistributionCentre
             while( fileScanner.hasNextLine() )
             {
                 taskLine = fileScanner.nextLine();
+
+                if( taskLine.equals( "" ) )
+                {
+                    break;
+                }
+
                 taskChar = taskLine.split( "[:]" )[0].charAt( 0 );
 
                 switch( taskChar )
@@ -156,7 +162,9 @@ public class DistributionCentre
                         break;
 
                     case 'R':
+                        System.out.println( "===========================================\nShip/Remove:\n" );
                         taskManager.ship( taskLine );
+                        System.out.println( "\n===========================================" );
                         break;
 
                     default:

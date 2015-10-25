@@ -164,7 +164,7 @@ public class TaskManager
 
     public void ship( String taskLine )
     {
-        //Implement
+        throw new UnsupportedOperationException( "Operation has not been implemented..." );
     }
 
 
