@@ -61,8 +61,6 @@ public class DescriptionWriter
         pw.print( "\n# End of File" );
 
         closeStream();
-
-        System.out.println( "\n-output file written" );
     }
 
 
