@@ -154,8 +154,18 @@ public class DistributionCentre
                 switch( taskChar )
                 {
                     case 'A':
-                        taskManager.add( taskLine );
-                        break;
+                        try
+                        {
+                            taskManager.add( taskLine );
+                        }
+                        catch( IllegalStateException e )
+                        {
+                            System.out.println( e.getMessage() );
+                        }
+                        finally
+                        {
+                            break;
+                        }
 
                     case 'S':
                         taskManager.search( taskLine );
