@@ -59,7 +59,7 @@ public class TaskManager
             }
             if( !added )
             {
-                addToRoller( cx );
+                addToDead( cx );
             }
             if( !added )
             {
