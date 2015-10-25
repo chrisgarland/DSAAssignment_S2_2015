@@ -90,6 +90,9 @@ public class TaskManager
             if( dc.m_bank[ii] instanceof DeadEnd && !dc.m_bank[ii].isFull() )
             {
                 insertCarton( cx, ii );
+
+                System.out.println(cx.getRowPosition() + ":" + cx.getColumnPosition());
+
                 mapCarton( cx );
             }
 
@@ -115,6 +118,9 @@ public class TaskManager
             if( dc.m_bank[ii] instanceof RollingCorridor && !dc.m_bank[ii].isFull() )
             {
                 insertCarton( cx, ii );
+
+                System.out.println(cx.getRowPosition() + ":" + cx.getColumnPosition());
+
                 mapCarton( cx );
             }
 
@@ -143,6 +149,8 @@ public class TaskManager
                 colPosition = dc.m_bank[ii].insert( cx, true );
                 cx.setRowPosition( ii );
                 cx.setColumnPosition( colPosition );
+
+                System.out.println(cx.getRowPosition() + ":" + cx.getColumnPosition());
 
                 mapCarton( cx );
             }
