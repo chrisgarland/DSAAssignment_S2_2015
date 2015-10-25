@@ -147,9 +147,9 @@ public class DistributionCentre
         try                                                     //Extract carton data
         {
             consignmentNote = Integer.parseInt( cartonQueue.dequeue() );
+            warrantyDate = cartonQueue.dequeue();
             productType = cartonQueue.dequeue();
             wholesalerName = cartonQueue.dequeue();
-            warrantyDate = cartonQueue.dequeue();
         }
         catch( IllegalArgumentException e )
         {

@@ -19,6 +19,13 @@ public class DSAAssignment
             {
                 System.out.println( d1.m_bank[ii].describe() );
             }
+
+            System.out.println("\n%\n");
+
+            for( int ii = 0; ii < d1.m_bank.length; ii++ )
+            {
+                System.out.print(d1.m_bank[ii].printCartons());
+            }
         }
         catch(ArrayIndexOutOfBoundsException e )
         {

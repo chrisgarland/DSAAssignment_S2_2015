@@ -49,9 +49,6 @@ public class DeadEnd extends StockRoom
         }
 
         storageBank[numElements] = inVal;                   //Use numElements as index then increment by 1
-
-        container.add( inVal );
-
         numElements++;
     }
 
@@ -113,6 +110,19 @@ public class DeadEnd extends StockRoom
         for( ii = 0; ii < numColonsToAdd; ii++ )
         {
             fullString += ":";
+        }
+
+        return fullString;
+    }
+
+    @Override
+    public String printCartons()
+    {
+        String fullString = "";
+
+        for( int ii = 0; ii < numElements; ii++ )
+        {
+            fullString += storageBank[ii].toString() + "\n";
         }
 
         return fullString;

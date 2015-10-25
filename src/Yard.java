@@ -48,7 +48,6 @@ public class Yard extends StockRoom
     public void initialInsert( int index, Carton value )
     {
         storageBank[index] = value;
-        container.add( value );
     }
 
 
@@ -146,6 +145,22 @@ public class Yard extends StockRoom
             else
             {
                 fullString += ":";
+            }
+        }
+
+        return fullString;
+    }
+
+    @Override
+    public String printCartons()
+    {
+        String fullString = "";
+
+        for( Carton aStorageBank : storageBank )
+        {
+            if( aStorageBank != null )
+            {
+                fullString += aStorageBank.toString() + "\n";
             }
         }
 

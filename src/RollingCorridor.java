@@ -46,9 +46,6 @@ public class RollingCorridor extends StockRoom
         }
 
         storageBank[numElements] = inVal;                   //Insert object in next available slot then increment count
-
-        container.add( inVal );
-
         numElements++;
     }
 
@@ -127,6 +124,19 @@ public class RollingCorridor extends StockRoom
         for( ii = 0; ii < numColonsToAdd; ii++ )
         {
             fullString += ":";
+        }
+
+        return fullString;
+    }
+
+    @Override
+    public String printCartons()
+    {
+        String fullString = "";
+
+        for( int ii = 0; ii < numElements; ii++ )
+        {
+            fullString += storageBank[ii].toString() + "\n";
         }
 
         return fullString;
