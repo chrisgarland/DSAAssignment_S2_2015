@@ -182,7 +182,6 @@ public class DistributionCentre
                     case 'R':
                         try
                         {
-                            System.out.println( "===========================================\nShip/Remove:\n" );
                             taskManager.ship( taskLine );
                         }
                         catch( UnsupportedOperationException e )
@@ -191,7 +190,6 @@ public class DistributionCentre
                         }
                         finally
                         {
-                            System.out.println( "\n===========================================" );
                             break;
                         }
 

@@ -38,8 +38,6 @@ public class TaskManager
 
         cx = getCarton( lineTok );
 
-        System.out.println( "============\nAdd:\n" );
-
         if( cx.hasLifetimeWarranty() )
         {
             addToDead( cx );                                //priority
@@ -74,8 +72,6 @@ public class TaskManager
                 throw new IllegalStateException( "Distribution Centre is full" );
             }
         }
-
-        System.out.println( "\n============" );
     }
 
     /**
@@ -143,8 +139,6 @@ public class TaskManager
 
         searcher = new CartonSearcher( dc );
 
-        System.out.println( "===========================================\nSearch:\n" );
-
         if( hasConsignment )
         {
             searcher.consignmentSearch( consignment );
@@ -167,8 +161,6 @@ public class TaskManager
         {
             searcher.sellerSearch( seller, date );
         }
-
-        System.out.println( "\n===========================================" );
     }
 
     /**
