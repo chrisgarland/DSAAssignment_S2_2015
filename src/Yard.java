@@ -48,6 +48,7 @@ public class Yard extends StockRoom
     public void initialInsert( int index, Carton value )
     {
         storageBank[index] = value;
+        container.add( value );
     }
 
 
@@ -127,7 +128,7 @@ public class Yard extends StockRoom
     }
 
     @Override
-    public String toString()
+    public String describe()
     {
         String fullString = "Y:";
 

@@ -11,6 +11,7 @@ public abstract class StockRoom
     protected int maxElements;
     protected int numElements;
     protected Carton[] storageBank;
+    protected CartonContainer container;
 
 
 //Constructors: Called by subclasses
@@ -37,6 +38,7 @@ public abstract class StockRoom
         setMaxElements( maxElements );                          //Exceptions handled in mutators
         numElements = 0;
         storageBank = new Carton[maxElements];
+        container = new CartonContainer( maxElements );
     }
 
 
@@ -47,6 +49,8 @@ public abstract class StockRoom
     public abstract Carton remove();
 
     public abstract Carton peek();
+
+    public abstract String describe();
 
 
 /*All following methods have common implementation for all subclasses*/
@@ -118,5 +122,11 @@ public abstract class StockRoom
     protected boolean isFull()
     {
         return count() == getMaxElements();
+    }
+
+
+    public String printCartons()
+    {
+        return container.toString();
     }
 }

@@ -17,7 +17,7 @@ public class DSAAssignment
 
             for( int ii = 0; ii < d1.m_bank.length; ii++ )
             {
-                System.out.println( d1.m_bank[ii].toString() );
+                System.out.println( d1.m_bank[ii].describe() );
             }
         }
         catch(ArrayIndexOutOfBoundsException e )
