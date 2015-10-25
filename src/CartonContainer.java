@@ -26,11 +26,13 @@ public class CartonContainer
         }
 
         container[numElements] = value;
+        numElements++;
 
-        if( !value.hasLifetimeWarranty() )
+        if( !value.hasLifetimeWarranty() && numElements > 1 )
         {
             sort();                                         //By warranty date
         }
+
     }
 
 
@@ -43,7 +45,7 @@ public class CartonContainer
         Carton temp;
         int ii;
 
-        for( int nn = 1; nn < container.length; nn++ )      //Start inserting at element 1
+        for( int nn = 1; nn < numElements; nn++ )      //Start inserting at element 1
         {
             ii = nn;                                        //Start from last item and go backwards
             temp = container[ii];

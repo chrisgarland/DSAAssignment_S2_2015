@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  * Created by chrisgarland on 20/10/15.
@@ -10,6 +12,8 @@ public class DistributionCentre
     private DSAQueue<String> cartonQueue;                           //Holds tokens from the carton section of file
     StockRoom[] m_bank;                                             //Master array for holding all stock rooms
     DSAHashTable cartonMap;                                         //For storing cartons as they are created
+    BinarySearchTree searchByProduct;
+    BinarySearchTree searchByWholesaler;
 
 
     /**
@@ -24,6 +28,8 @@ public class DistributionCentre
         cartonQueue = new DSAQueue<String>();
         m_bank = null;
         cartonMap = new DSAHashTable( 2048 );                       //Twice the size of max num cartons
+        searchByProduct = new BinarySearchTree();
+        searchByWholesaler = new BinarySearchTree();
     }
 
 
@@ -92,7 +98,7 @@ public class DistributionCentre
 
         m_bank = new StockRoom[numStockRooms];                      //Master array for storing stock rooms
 
-        BankBuilder bankBuilder = new BankBuilder(geoQueue, cartonMap, m_bank);
+        BankBuilder bankBuilder = new BankBuilder(geoQueue, cartonMap, m_bank, searchByProduct, searchByWholesaler);
 
         for( int index = 0; index < numStockRooms; index++ )
         {
@@ -121,6 +127,58 @@ public class DistributionCentre
     }
 
 
+    public void doTask( File taskFile )
+    {
+        Scanner fileScanner = null;
+
+        try
+        {
+            fileScanner = new Scanner( taskFile );
+            fileScanner.useDelimiter( "[:]" );
+
+            TaskManager taskManager = new TaskManager( this );
+            String taskLine;
+            char taskChar;
+
+            while( fileScanner.hasNextLine() )
+            {
+                taskLine = fileScanner.nextLine();
+                taskChar = taskLine.split( "[:]" )[0].charAt( 0 );
+
+                switch( taskChar )
+                {
+                    case 'A':
+                        taskManager.add( taskLine );
+                        break;
+
+                    case 'S':
+                        taskManager.search( taskLine );
+                        break;
+
+                    case 'R':
+                        taskManager.ship( taskLine );
+                        break;
+
+                    default:
+                        System.out.println("Error reading task file");
+                }
+            }
+        }
+        catch( FileNotFoundException e )
+        {
+            System.out.println(e.getMessage());
+        }
+        finally
+        {
+            if( fileScanner != null )
+            {
+                fileScanner.close();
+            }
+
+        }
+    }
+
+
     public void describe( String inFileName )
     {
         DescriptionWriter dw = new DescriptionWriter( inFileName, this );
@@ -139,9 +197,9 @@ public class DistributionCentre
     {
         //Data for instantiating a carton
         int consignmentNote = 0;
+        String warrantyDate = null;
         String productType = null;
         String wholesalerName = null;
-        String warrantyDate = null;
 
         Carton cx = null;
 

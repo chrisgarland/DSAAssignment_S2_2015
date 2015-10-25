@@ -6,12 +6,32 @@ public class BankBuilder
     DSAQueue<String> geoQueue;
     DSAHashTable cartonMap;
     StockRoom[] m_bank;
+    BinarySearchTree sByProduct;
+    BinarySearchTree sBySeller;
 
-    public BankBuilder( DSAQueue<String> inQueue, DSAHashTable inTable, StockRoom[] inRoom )
+
+    /**
+     * Alternate constructor                        Change parameter to DistroCentre?
+     *
+     * @param inQueue         -
+     * @param inTable         -
+     * @param inRoom          -
+     * @param searchByProduct -
+     * @param searchBySeller  -
+     */
+    public BankBuilder( DSAQueue<String> inQueue,
+                        DSAHashTable inTable,
+                        StockRoom[] inRoom,
+                        BinarySearchTree searchByProduct,
+                        BinarySearchTree searchBySeller
+    )
     {
         geoQueue = inQueue;
         cartonMap = inTable;
         m_bank = inRoom;
+        sByProduct = searchByProduct;
+        sBySeller = searchBySeller;
+
     }
 
 
@@ -54,11 +74,9 @@ public class BankBuilder
                 dead.insert( cx );                                      //Fill stockroom with appropriate cartons
 
                 cx.setRowPosition( index );                             //Master array index
-                cx.setColumnPosition( dead.count() -1 );                //Stockroom index
+                cx.setColumnPosition( dead.count() - 1 );                //Stockroom index
 
-                //Insert updated carton back into hash table
-                String key = String.valueOf( cx.getConsignmentNote() );
-                cartonMap.put( key, cx );
+                map( cx );
             }
 
             m_bank[index] = dead;                                       //Insert Stockroom into master array
@@ -69,7 +87,7 @@ public class BankBuilder
         }
         catch( IllegalStateException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
 
     }
@@ -114,10 +132,9 @@ public class BankBuilder
                 roller.insert( cx );                                    //Fill stockroom with appropriate cartons
 
                 cx.setRowPosition( index );                             //Master array index
-                cx.setColumnPosition( roller.count() -1 );              //Stockroom index
+                cx.setColumnPosition( roller.count() - 1 );              //Stockroom index
 
-                String key = String.valueOf( cx.getConsignmentNote() );
-                cartonMap.put( key, cx );
+                map( cx );
             }
 
             m_bank[index] = roller;                                     //Insert Stockroom into master array
@@ -128,7 +145,7 @@ public class BankBuilder
         }
         catch( IllegalStateException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
     }
 
@@ -178,7 +195,7 @@ public class BankBuilder
                     cx.setRowPosition( index );
                     cx.setColumnPosition( indexOfYard );
 
-                    cartonMap.put( token, cx );
+                    map( cx );
 
                     indexOfYard++;
                 }
@@ -192,8 +209,29 @@ public class BankBuilder
         }
         catch( IllegalStateException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
+    }
+
+
+    /**
+     * Responsible for mapping the cartons into the
+     * data structures for later retrieval
+     *
+     * @param inCarton -
+     */
+    private void map( Carton inCarton )
+    {
+        String tableKey = String.valueOf( inCarton.getConsignmentNote() );
+        String prodKey = inCarton.getProductType();
+        String sellerKey = inCarton.getWholesalerName();
+
+        //hash table
+        cartonMap.put( tableKey, inCarton );
+
+        //Binary trees
+        sByProduct.insert( prodKey, inCarton );
+        sBySeller.insert( sellerKey, inCarton );
     }
 
 

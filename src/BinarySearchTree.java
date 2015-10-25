@@ -1,11 +1,13 @@
+import sun.misc.resources.Messages_zh_CN;
+
 import java.util.NoSuchElementException;
 
 /**
  * Created by chrisgarland on 13/10/15.
  */
-public class BinarySearchTree<T>
+public class BinarySearchTree
 {
-    private TreeNode<T> root;
+    private TreeNode root;
     private int currentHeight, totalHeight;
 
     public BinarySearchTree()
@@ -21,7 +23,7 @@ public class BinarySearchTree<T>
      * @param key - Given to findRecursive()
      * @return - value received by findRecursive()
      */
-    public T find( String key )
+    public Carton[] find( String key )
     {
         return findRecursive( key, root );
     }
@@ -35,9 +37,9 @@ public class BinarySearchTree<T>
      * @return - value
      * @throws NoSuchElementException
      */
-    private T findRecursive( String key, TreeNode<T> currentNode ) throws NoSuchElementException
+    private Carton[] findRecursive( String key, TreeNode currentNode ) throws NoSuchElementException
     {
-        T value;
+        Carton[] value;
 
         if( currentNode == null )                                   //Base case: Not found
         {
@@ -45,7 +47,7 @@ public class BinarySearchTree<T>
         }
         else if( key.equals( currentNode.key ) )                    //Base Case: Found
         {
-            value = currentNode.value;
+            value = currentNode.container.getContainer();           //Array at node
         }
         else if( key.compareTo( currentNode.key ) < 0 )             //Key less than currentNode.key
         {
@@ -67,15 +69,16 @@ public class BinarySearchTree<T>
      * @param key   - Provided by user
      * @param value - Provided by user
      */
-    public void insert( String key, T value )
+    public void insert( String key, Carton value )
     {
         if( root == null )                                          //Empty tree
         {
-            root = new TreeNode<T>( key, value );
+            root = new TreeNode( key, value );
         }
         else                                                        //Not empty
         {
             insertRecursive( key, value, root );
+
         }
     }
 
@@ -89,17 +92,17 @@ public class BinarySearchTree<T>
      * @return - Update Node
      * @throws IllegalStateException
      */
-    private TreeNode<T> insertRecursive( String key, T value, TreeNode<T> currentNode ) throws IllegalStateException
+    private TreeNode insertRecursive( String key, Carton value, TreeNode currentNode ) throws IllegalStateException
     {
-        TreeNode<T> updateNode = currentNode;
+        TreeNode updateNode = currentNode;
 
         if( currentNode == null )                                           //Base Case: Found
         {
-            updateNode = new TreeNode<T>( key, value );
+            updateNode = new TreeNode( key, value );
         }
-        else if( key.equals( currentNode.key ) )                            //Duplicate key not allowed
+        else if( key.equals( currentNode.key ) )                            //Duplicate key
         {
-            throw new IllegalStateException( "Duplicate key detected" );
+            currentNode.container.insert( value );                          //Insert into container (array)
         }
         else if( key.compareTo( currentNode.key ) < 0 )                     //Key less than currentNode.key
         {
@@ -134,9 +137,9 @@ public class BinarySearchTree<T>
      * @return - updateNode
      * @throws IllegalArgumentException
      */
-    private TreeNode<T> deleteRecursive( String key, TreeNode<T> currentNode ) throws IllegalArgumentException
+    private TreeNode deleteRecursive( String key, TreeNode currentNode ) throws IllegalArgumentException
     {
-        TreeNode<T> updateNode = currentNode;
+        TreeNode updateNode = currentNode;
 
         if( currentNode == null )
         {
@@ -165,9 +168,9 @@ public class BinarySearchTree<T>
      * @param deleteNode - Node to be deleted
      * @return - update node
      */
-    private TreeNode<T> deleteNode( TreeNode<T> deleteNode )
+    private TreeNode deleteNode( TreeNode deleteNode )
     {
-        TreeNode<T> updateNode;
+        TreeNode updateNode;
 
         if( isLeaf( deleteNode ) )                                              //No children
         {
@@ -203,9 +206,9 @@ public class BinarySearchTree<T>
      * @param currentNode - Provided by deleteNode()
      * @return - successor
      */
-    private TreeNode<T> promoteSuccessor( TreeNode<T> currentNode )
+    private TreeNode promoteSuccessor( TreeNode currentNode )
     {
-        TreeNode<T> successor = currentNode;
+        TreeNode successor = currentNode;
 
         if( currentNode.leftChild != null )
         {
@@ -242,7 +245,7 @@ public class BinarySearchTree<T>
      * @param currentNode - Starts as root
      * @return - (int) num of levels
      */
-    private int heightRecursive( TreeNode<T> currentNode )
+    private int heightRecursive( TreeNode currentNode )
     {
 
         if( currentNode != null )                                   //Base Case: Not Found
@@ -276,7 +279,7 @@ public class BinarySearchTree<T>
      * @param testNode - Node to be checked
      * @return - bool
      */
-    private boolean isLeaf( TreeNode<T> testNode )
+    private boolean isLeaf( TreeNode testNode )
     {
         return ( testNode.leftChild == null ) && ( testNode.rightChild == null );
     }
@@ -302,7 +305,7 @@ public class BinarySearchTree<T>
      * @param root -
      * @param indent -
      */
-    private void printSubTree( TreeNode<T> root, String indent )
+    private void printSubTree( TreeNode root, String indent )
     {
         if( root != null )
         {
@@ -332,14 +335,16 @@ public class BinarySearchTree<T>
      * Each node will contain a reference its own left child, right child and
      * to the actual stored value.
      */
-    private class TreeNode<E>
+    private class TreeNode
     {
         //All fields made public so visible to BinarySearchTree{}. This
         //eliminates the need for setters/getters
+        public static final int MAX_CAPACITY = 1028;
+
         public String key;
-        public E value;
-        public TreeNode<E> leftChild;
-        public TreeNode<E> rightChild;
+        public CartonContainer container;
+        public TreeNode leftChild;
+        public TreeNode rightChild;
 
 
         /**
@@ -350,7 +355,7 @@ public class BinarySearchTree<T>
          * @param inVal - value
          * @throws IllegalArgumentException
          */
-        public TreeNode( String inKey, E inVal ) throws IllegalArgumentException
+        public TreeNode( String inKey, Carton inVal ) throws IllegalArgumentException
         {
             if( inKey == null )
             {
@@ -358,9 +363,11 @@ public class BinarySearchTree<T>
             }
 
             key = inKey;
-            value = inVal;
+            container = new CartonContainer();
             leftChild = null;
             rightChild = null;
+
+            container.insert( inVal );
         }
 
 
@@ -369,9 +376,5 @@ public class BinarySearchTree<T>
          *
          * @return - key as string
          */
-        public String toString()
-        {
-            return key.toString();
-        }
     }
 }
