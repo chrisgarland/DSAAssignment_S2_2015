@@ -1,16 +1,30 @@
 /**
  * Created by chrisgarland on 26/10/15.
+ *
+ * Supporting class. Uses the data structures to find
+ * appropriate cartons.
  */
 public class CartonSearcher
 {
     DistributionCentre dc;
 
+
+    /**
+     * Alternate constructor
+     *
+     * @param inCentre -
+     */
     public CartonSearcher( DistributionCentre inCentre )
     {
         dc = inCentre;
     }
 
 
+    /**
+     * Responsible for searching by consignment note
+     *
+     * @param consignment - key
+     */
     public void consignmentSearch( int consignment )
     {
         Carton cx;

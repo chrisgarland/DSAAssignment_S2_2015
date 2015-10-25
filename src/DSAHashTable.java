@@ -1,5 +1,8 @@
 /**
  * Created by chrisgarland on 3/09/15.
+ *
+ * Implemented using an array. max load factor
+ * is 0.5 before resize().
  */
 public class DSAHashTable
 {
@@ -402,8 +405,6 @@ public class DSAHashTable
                 put( oldTable[ii] );
             }
         }
-
-//        System.out.println("Table re-sized to a length of: " + getTableSize());
     }
 
 

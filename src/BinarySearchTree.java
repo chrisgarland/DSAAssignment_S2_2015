@@ -1,9 +1,9 @@
-import sun.misc.resources.Messages_zh_CN;
-
 import java.util.NoSuchElementException;
 
 /**
  * Created by chrisgarland on 13/10/15.
+ *
+ * Contains private inner class - TreeNode
  */
 public class BinarySearchTree
 {
@@ -334,6 +334,7 @@ public class BinarySearchTree
      * TreeNode{}: Each instance will be a node in the binary search tree.
      * Each node will contain a reference its own left child, right child and
      * to the actual stored value.
+     * Allows for duplicate keys, stored in an array
      */
     private class TreeNode
     {

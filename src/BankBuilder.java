@@ -1,5 +1,8 @@
 /**
  * Created by chrisgarland on 23/10/15.
+ *
+ * This class is responsible for building and filling
+ * the physical storage banks.
  */
 public class BankBuilder
 {
@@ -11,7 +14,7 @@ public class BankBuilder
 
 
     /**
-     * Alternate constructor                        Change parameter to DistroCentre?
+     * Alternate constructor
      *
      * @param inQueue         -
      * @param inTable         -
@@ -41,7 +44,7 @@ public class BankBuilder
      * complete stock room within the master array, recording
      * the carton's position.
      *
-     * @param index - Provided by DistributionCentre{}
+     * @param index - Position within master bank
      */
     public void buildDead( int index )
     {
@@ -99,7 +102,7 @@ public class BankBuilder
      * complete stock room within the master array, recording
      * the carton's position.
      *
-     * @param index - Provided by DistributionCentre{}
+     * @param index - Position within master bank
      */
     public void buildRoller( int index )
     {
@@ -150,6 +153,14 @@ public class BankBuilder
     }
 
 
+    /**
+     * Responsible for building a Yard stock room.
+     * It then inserts appropriate cartons, and places
+     * complete stock room within the master array, recording
+     * the carton's position.
+     *
+     * @param index - Position within master bank
+     */
     public void buildYard( int index )
     {
         int capacity = 0;
@@ -161,11 +172,11 @@ public class BankBuilder
 
         try
         {
-            while( !geoQueue.isEmpty() && frontNotALetter() )
+            while( !geoQueue.isEmpty() && frontNotALetter() )           //Fill temp queue
             {
                 token = geoQueue.dequeue();
 
-                if( token.equals( ":" ) )
+                if( token.equals( ":" ) )                               //For every ":", increment capacity
                 {
                     capacity++;
                 }
@@ -188,14 +199,14 @@ public class BankBuilder
                 }
                 else
                 {
-                    cx = cartonMap.remove( token );
+                    cx = cartonMap.remove( token );                     //Extract carton from hash table
 
-                    yard.initialInsert( indexOfYard, cx );
+                    yard.initialInsert( indexOfYard, cx );              //Actual insert
 
                     cx.setRowPosition( index );
                     cx.setColumnPosition( indexOfYard );
 
-                    map( cx );
+                    map( cx );                                          //place updated carton in hash table
 
                     indexOfYard++;
                 }

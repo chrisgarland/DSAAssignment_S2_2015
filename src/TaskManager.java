@@ -2,6 +2,8 @@ import java.util.StringTokenizer;
 
 /**
  * Created by chrisgarland on 25/10/15.
+ * <p/>
+ * Responsible for managing all tasks
  */
 public class TaskManager
 {
@@ -9,6 +11,11 @@ public class TaskManager
     private boolean added;
 
 
+    /**
+     * Alternate constructor
+     *
+     * @param distCentre -
+     */
     public TaskManager( DistributionCentre distCentre )
     {
         dc = distCentre;
@@ -17,6 +24,7 @@ public class TaskManager
 
 
     /**
+     * Responsible for adding cartons
      *
      * @param taskLine
      */
@@ -34,7 +42,7 @@ public class TaskManager
 
         if( cx.hasLifetimeWarranty() )
         {
-            addToDead( cx );
+            addToDead( cx );                                //priority
 
             if( !added )
             {
@@ -51,7 +59,7 @@ public class TaskManager
         }
         else                                                //Has expiry date
         {
-            addToRoller( cx );
+            addToRoller( cx );                              //priority
 
             if( !added )
             {
@@ -71,8 +79,9 @@ public class TaskManager
     }
 
     /**
+     * Responsible for searching
      *
-     * @param taskLine
+     * @param taskLine -
      */
     public void search( String taskLine )
     {
@@ -93,7 +102,7 @@ public class TaskManager
 
         try
         {
-            token =  lineTok.nextToken();
+            token = lineTok.nextToken();
             if( !token.equals( ":" ) )
             {
                 consignment = Integer.valueOf( token );
@@ -129,7 +138,7 @@ public class TaskManager
         }
         catch( IllegalStateException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
 
         searcher = new CartonSearcher( dc );
@@ -162,6 +171,11 @@ public class TaskManager
         System.out.println( "\n===========================================" );
     }
 
+    /**
+     * Unimplemented
+     *
+     * @param taskLine
+     */
     public void ship( String taskLine )
     {
         throw new UnsupportedOperationException( "Operation has not been implemented..." );
@@ -255,6 +269,12 @@ public class TaskManager
     }
 
 
+    /**
+     * Does the actual inserting.
+     *
+     * @param cx    -
+     * @param index -
+     */
     private void insertCarton( Carton cx, int index )
     {
         try
@@ -278,6 +298,13 @@ public class TaskManager
 
     }
 
+
+    /**
+     * Places carton in hassh table and two binary trees
+     * for later retrieval.
+     *
+     * @param cx - Carton to be placed
+     */
     private void mapCarton( Carton cx )
     {
         String tableKey = String.valueOf( cx.getConsignmentNote() );
@@ -293,6 +320,12 @@ public class TaskManager
     }
 
 
+    /**
+     * Creates and returns a carton
+     *
+     * @param lineTok -
+     * @return -
+     */
     private Carton getCarton( StringTokenizer lineTok )
     {
         int consignmentNote;

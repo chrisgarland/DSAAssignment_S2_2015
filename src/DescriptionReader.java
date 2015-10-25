@@ -5,6 +5,8 @@ import java.util.StringTokenizer;
 
 /**
  * Created by chrisgarland on 21/10/15.
+ *
+ * Reads from description file
  */
 public class DescriptionReader
 {

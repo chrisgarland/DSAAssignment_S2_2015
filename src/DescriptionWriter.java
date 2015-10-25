@@ -5,6 +5,8 @@ import java.io.PrintWriter;
 
 /**
  * Created by chrisgarland on 24/10/15.
+ * <p/>
+ * Responsible for writing a description file
  */
 public class DescriptionWriter
 {
@@ -13,34 +15,43 @@ public class DescriptionWriter
     DistributionCentre dc;
 
 
+    /**
+     * Alternate constructor
+     *
+     * @param inFileName -
+     * @param inDc       -
+     */
     public DescriptionWriter( String inFileName, DistributionCentre inDc )
     {
         dc = inDc;
 
         try
         {
-            ostr = new FileOutputStream( getOutputFilename( inFileName ) );
+            ostr = new FileOutputStream( getOutputFilename( inFileName ) );             //Private method below
             pw = new PrintWriter( ostr );
         }
         catch( FileNotFoundException e )
         {
-            System.out.println("Error writing to file: " + e.getMessage());
+            System.out.println( "Error writing to file: " + e.getMessage() );
         }
     }
 
 
+    /**
+     * Does the actual writing
+     */
     public void writeDescription()
     {
-        pw.println("# DC Geometry Section\n");
+        pw.println( "# DC Geometry Section\n" );
 
         for( int ii = 0; ii < dc.m_bank.length; ii++ )
         {
-            pw.println(dc.m_bank[ii].describe());
+            pw.println( dc.m_bank[ii].describe() );
         }
 
-        pw.println("\n%\n");
+        pw.println( "\n%\n" );
 
-        pw.println("# Carton Description Section\n");
+        pw.println( "# Carton Description Section\n" );
 
         for( int ii = 0; ii < dc.m_bank.length; ii++ )
         {
@@ -51,7 +62,7 @@ public class DescriptionWriter
 
         closeStream();
 
-        System.out.println("\n-output file written");
+        System.out.println( "\n-output file written" );
     }
 
 
@@ -68,7 +79,7 @@ public class DescriptionWriter
         }
         catch( IOException e )
         {
-            System.out.println("Error closing FileOutputStream" + e.getMessage());
+            System.out.println( "Error closing FileOutputStream" + e.getMessage() );
         }
     }
 

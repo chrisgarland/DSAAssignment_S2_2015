@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 /**
  * Created by chrisgarland on 20/10/15.
+ * <p/>
+ * The only class accessed by main().
+ * Responsible for controlling all operations.
  */
 public class DistributionCentre
 {
@@ -78,7 +81,7 @@ public class DistributionCentre
             }
             catch( IllegalStateException e )
             {
-                System.out.println(e.getMessage());
+                System.out.println( e.getMessage() );
             }
         }
     }
@@ -98,7 +101,7 @@ public class DistributionCentre
 
         m_bank = new StockRoom[numStockRooms];                      //Master array for storing stock rooms
 
-        BankBuilder bankBuilder = new BankBuilder(geoQueue, cartonMap, m_bank, searchByProduct, searchByWholesaler);
+        BankBuilder bankBuilder = new BankBuilder( geoQueue, cartonMap, m_bank, searchByProduct, searchByWholesaler );
 
         for( int index = 0; index < numStockRooms; index++ )
         {
@@ -127,6 +130,11 @@ public class DistributionCentre
     }
 
 
+    /**
+     * Responsible for completing the various tasks.
+     *
+     * @param taskFile -
+     */
     public void doTasks( File taskFile )
     {
         Scanner fileScanner = null;
@@ -144,12 +152,12 @@ public class DistributionCentre
             {
                 taskLine = fileScanner.nextLine();
 
-                if( taskLine.equals( "" ) )
+                if( taskLine.equals( "" ) )                             //Ignore empty lines
                 {
                     break;
                 }
 
-                taskChar = taskLine.split( "[:]" )[0].charAt( 0 );
+                taskChar = taskLine.split( "[:]" )[0].charAt( 0 );      //Retrieve Task char from file
 
                 switch( taskChar )
                 {
@@ -179,7 +187,7 @@ public class DistributionCentre
                         }
                         catch( UnsupportedOperationException e )
                         {
-                            System.out.println(e.getMessage());
+                            System.out.println( e.getMessage() );
                         }
                         finally
                         {
@@ -188,13 +196,13 @@ public class DistributionCentre
                         }
 
                     default:
-                        System.out.println("Error reading task file");
+                        System.out.println( "Error reading task file" );
                 }
             }
         }
         catch( FileNotFoundException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
         finally
         {
@@ -207,6 +215,12 @@ public class DistributionCentre
     }
 
 
+    /**
+     * Instantiates Description writer.
+     * Responsible for describing Distro. Centre
+     *
+     * @param inFileName -
+     */
     public void describe( String inFileName )
     {
         DescriptionWriter dw = new DescriptionWriter( inFileName, this );
@@ -244,7 +258,7 @@ public class DistributionCentre
         }
         catch( IllegalStateException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
 
         try                                                     //Create carton
@@ -253,7 +267,7 @@ public class DistributionCentre
         }
         catch( IllegalArgumentException e )
         {
-            System.out.println(e.getMessage());
+            System.out.println( e.getMessage() );
         }
 
         return cx;

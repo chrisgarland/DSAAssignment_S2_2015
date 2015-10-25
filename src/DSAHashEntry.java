@@ -1,5 +1,8 @@
 /**
  * Created by chrisgarland on 3/09/15.
+ * <p/>
+ * Each instance of this class is one entry
+ * in a hash table
  */
 public class DSAHashEntry
 {
@@ -10,6 +13,10 @@ public class DSAHashEntry
     private Carton value;
     private int state;                                      //0 = never used; 1 = used; -1 = formerly used
 
+
+    /**
+     * Default constructor
+     */
     public DSAHashEntry()
     {
         key = "";
@@ -18,6 +25,12 @@ public class DSAHashEntry
     }
 
 
+    /**
+     * Alternate constructor
+     *
+     * @param inKey -
+     * @param inVal -
+     */
     public DSAHashEntry( String inKey, Carton inVal )
     {
         if( inKey.isEmpty() )

@@ -1,5 +1,8 @@
 /**
  * Created by chrisgarland on 15/09/15.
+ *
+ * Implemented using an array - to represent a
+ * physical rolling corridor.
  */
 public class RollingCorridor extends StockRoom
 {
@@ -108,6 +111,12 @@ public class RollingCorridor extends StockRoom
         }
     }
 
+
+    /**
+     * For printing the geo section
+     *
+     * @return -
+     */
     @Override
     public String describe()
     {
@@ -129,6 +138,12 @@ public class RollingCorridor extends StockRoom
         return fullString;
     }
 
+
+    /**
+     * For printing the pallet section
+     *
+     * @return
+     */
     @Override
     public String printCartons()
     {

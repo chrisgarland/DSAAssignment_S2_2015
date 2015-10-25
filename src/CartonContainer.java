@@ -1,16 +1,21 @@
-import sun.tools.asm.CatchData;
-
 /**
  * Created by chrisgarland on 25/10/15.
+ *
+ * Implemented using an array. To be used at each node
+ * in a binary search tree. Allows duplicate keys. Sorted
+ * after each insertion.
  */
 public class CartonContainer
 {
-    private static final int DEFAULT_SIZE = 1024;
+    private static final int DEFAULT_SIZE = 1024;               //Max number of cartons
 
     private Carton[] container;
     private int numElements;
 
 
+    /**
+     * Default constructor
+     */
     public CartonContainer()
     {
         numElements = 0;
@@ -18,6 +23,12 @@ public class CartonContainer
     }
 
 
+    /**
+     * Insert a carton into array if duplicate key
+     * Calls sort() (by date).
+     *
+     * @param value - carton
+     */
     public void insert( Carton value )
     {
         if( isFull() )
@@ -68,10 +79,5 @@ public class CartonContainer
     private boolean isFull()
     {
         return numElements == DEFAULT_SIZE;
-    }
-
-    private boolean isEmpty()
-    {
-        return numElements == 0;
     }
 }
