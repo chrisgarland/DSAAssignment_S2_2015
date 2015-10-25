@@ -9,23 +9,14 @@ public class DSAAssignment
     {
         try
         {
-            File desc = new File( args[0] );
+            String filename = args[0];
+            File desc = new File( filename );
             DistributionCentre d1 = new DistributionCentre();
+
             d1.readDescription( desc );
             d1.receiveCartons();
             d1.buildBanks();
-
-            for( int ii = 0; ii < d1.m_bank.length; ii++ )
-            {
-                System.out.println( d1.m_bank[ii].describe() );
-            }
-
-            System.out.println("\n%\n");
-
-            for( int ii = 0; ii < d1.m_bank.length; ii++ )
-            {
-                System.out.print(d1.m_bank[ii].printCartons());
-            }
+            d1.describe( filename );
         }
         catch(ArrayIndexOutOfBoundsException e )
         {

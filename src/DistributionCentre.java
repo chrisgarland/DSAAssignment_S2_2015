@@ -124,6 +124,7 @@ public class DistributionCentre
     public void describe( String inFileName )
     {
         DescriptionWriter dw = new DescriptionWriter( inFileName, this );
+        dw.writeDescription();
     }
 
 
