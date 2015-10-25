@@ -55,6 +55,55 @@ public abstract class StockRoom
 
 /*All following methods have common implementation for all subclasses*/
 
+    /**
+     * Inserts carton into Yard and returns the index
+     *
+     * @param inValue     -
+     * @param returnIndex -
+     * @return - Index
+     * @throws IllegalArgumentException
+     * @throws IllegalStateException
+     */
+    public int insert( Carton inValue, boolean returnIndex ) throws IllegalArgumentException, IllegalStateException
+    {
+        boolean insertSuccessful = false;
+        int index = 0;
+        int retIndex = -1;
+
+        if( inValue == null )
+        {
+            throw new IllegalArgumentException( "Null value provided" );
+        }
+        if( isFull() )
+        {
+            throw new IllegalStateException( "Yard is full. Cannot insert value" );
+        }
+
+        while( !( insertSuccessful ) )
+        {
+            if( storageBank[index] == null )
+            {
+                storageBank[index] = inValue;
+                numElements++;
+                insertSuccessful = true;
+
+                if( returnIndex )
+                {
+                    retIndex = index;
+                }
+            }
+
+            index++;
+        }
+
+        if( !( insertSuccessful ) )
+        {
+            throw new IllegalStateException( "Value was not inserted into Yard" );
+        }
+
+        return retIndex;
+    }
+
 
 //Accessors:
 

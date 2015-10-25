@@ -22,6 +22,7 @@ public class DistributionCentre
      */
     public DistributionCentre()
     {
+
         numStockRooms = 0;
         numCartons = 0;
         geoQueue = new DSAQueue<String>();
@@ -31,7 +32,6 @@ public class DistributionCentre
         searchByProduct = new BinarySearchTree();
         searchByWholesaler = new BinarySearchTree();
     }
-
 
     /**
      * This method is responsible for reading the
@@ -234,6 +234,7 @@ public class DistributionCentre
 
 //Accessors:
 
+
     /**
      * @return - Number of stockrooms
      */
@@ -242,13 +243,20 @@ public class DistributionCentre
         return numStockRooms;
     }
 
-
     /**
      * @return - Number of cartons
      */
     public int getNumCartons()
     {
         return numCartons;
+    }
+
+
+//Mutators:
+
+    public void incrementCartons()
+    {
+        numCartons++;
     }
 
 }
