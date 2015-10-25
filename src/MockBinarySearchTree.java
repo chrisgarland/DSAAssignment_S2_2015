@@ -47,7 +47,7 @@ public class MockBinarySearchTree
         }
         else if( key.equals( currentNode.key ) )                    //Base Case: Found
         {
-            value = currentNode.array;
+            value = currentNode.container.getContainer();           //Array at node
         }
         else if( key.compareTo( currentNode.key ) < 0 )             //Key less than currentNode.key
         {
@@ -99,9 +99,9 @@ public class MockBinarySearchTree
         {
             updateNode = new TreeNode( key, value );
         }
-        else if( key.equals( currentNode.key ) )                            //Duplicate key not allowed
+        else if( key.equals( currentNode.key ) )                            //Duplicate key
         {
-            throw new IllegalStateException( "Duplicate key detected" );
+            currentNode.container.insert( value );                          //Insert into container (array)
         }
         else if( key.compareTo( currentNode.key ) < 0 )                     //Key less than currentNode.key
         {
@@ -341,10 +341,9 @@ public class MockBinarySearchTree
         public static final int MAX_CAPACITY = 1028;
 
         public String key;
-        public Carton[] array;
+        public CartonContainer container;
         public TreeNode leftChild;
         public TreeNode rightChild;
-        public int arrayCount;
 
 
         /**
@@ -363,9 +362,11 @@ public class MockBinarySearchTree
             }
 
             key = inKey;
-            array = new Carton[MAX_CAPACITY];
+            container = new CartonContainer();
             leftChild = null;
             rightChild = null;
+
+            container.insert( inVal );
         }
 
 
