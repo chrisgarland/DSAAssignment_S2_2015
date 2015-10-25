@@ -162,10 +162,20 @@ public class DistributionCentre
                         break;
 
                     case 'R':
-                        System.out.println( "===========================================\nShip/Remove:\n" );
-                        taskManager.ship( taskLine );
-                        System.out.println( "\n===========================================" );
-                        break;
+                        try
+                        {
+                            System.out.println( "===========================================\nShip/Remove:\n" );
+                            taskManager.ship( taskLine );
+                        }
+                        catch( UnsupportedOperationException e )
+                        {
+                            System.out.println(e.getMessage());
+                        }
+                        finally
+                        {
+                            System.out.println( "\n===========================================" );
+                            break;
+                        }
 
                     default:
                         System.out.println("Error reading task file");

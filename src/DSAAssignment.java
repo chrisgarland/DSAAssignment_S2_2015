@@ -23,9 +23,9 @@ public class DSAAssignment
             d1.doTasks( tasks );
             d1.describe( descFilename );
         }
-        catch(ArrayIndexOutOfBoundsException e )
+        catch( ArrayIndexOutOfBoundsException e )
         {
-            System.out.println("Must supply 2 files: Description and Task");
+            System.out.println( "Must supply 2 files: Description and Task" );
         }
     }
 }
