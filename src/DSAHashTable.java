@@ -114,9 +114,9 @@ public class DSAHashTable
      * @return - Value at given key
      * @throws IllegalArgumentException
      */
-    public Object get( String key ) throws IllegalArgumentException
+    public Carton get( String key ) throws IllegalArgumentException
     {
-        Object value = null;                                            //To be returned
+        Carton value = null;                                            //To be returned
         int index = hash( key );                                        //Initial index
         boolean found = false;                                          //while loop
 

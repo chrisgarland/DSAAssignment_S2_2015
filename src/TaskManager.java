@@ -16,17 +16,21 @@ public class TaskManager
     }
 
 
+    /**
+     *
+     * @param taskLine
+     */
     public void add( String taskLine )
     {
         StringTokenizer lineTok = new StringTokenizer( taskLine, ":", false );
         Carton cx;
         added = false;
 
-        lineTok.nextToken();                                //pop front value off
+        lineTok.nextToken();                                //Move past first token: "A"
 
         cx = getCarton( lineTok );
 
-        System.out.println("============\nAdd:\n");
+        System.out.println( "============\nAdd:\n" );
 
         if( cx.hasLifetimeWarranty() )
         {
@@ -63,17 +67,104 @@ public class TaskManager
             }
         }
 
-        System.out.println("\n============");
+        System.out.println( "\n============" );
     }
 
+    /**
+     *
+     * @param taskLine
+     */
     public void search( String taskLine )
     {
+        StringTokenizer lineTok = new StringTokenizer( taskLine, ":", true );
+        CartonSearcher searcher;
+        String date = "";
+        String product = "";
+        String seller = "";
+        String token;
+        boolean hasConsignment = false;
+        boolean hasDate = false;
+        boolean hasProduct = false;
+        boolean hasSeller = false;
+        int consignment = -1;
 
+        lineTok.nextToken();                                //Move past first token: "S"
+        lineTok.nextToken();                                //Move past second token: ":"
+
+        try
+        {
+            token =  lineTok.nextToken();
+            if( !token.equals( ":" ) )
+            {
+                consignment = Integer.valueOf( token );
+                hasConsignment = true;
+                lineTok.nextToken();
+            }
+
+            token = lineTok.nextToken();
+            if( !token.equals( ":" ) )
+            {
+                date = token;
+                hasDate = true;
+                lineTok.nextToken();
+            }
+
+            token = lineTok.nextToken();
+            if( !token.equals( ":" ) )
+            {
+                product = token;
+                hasProduct = true;
+                lineTok.nextToken();
+            }
+
+            if( lineTok.hasMoreTokens() )
+            {
+                seller = lineTok.nextToken();
+                hasSeller = true;
+            }
+        }
+        catch( IllegalArgumentException e )
+        {
+            System.out.println( e.getMessage() );
+        }
+        catch( IllegalStateException e )
+        {
+            System.out.println(e.getMessage());
+        }
+
+        searcher = new CartonSearcher( dc );
+
+        System.out.println( "===========================================\nSearch:\n" );
+
+        if( hasConsignment )
+        {
+            searcher.consignmentSearch( consignment );
+        }
+
+        if( hasProduct && !hasDate )
+        {
+            searcher.productSearch( product );
+        }
+        else if( hasProduct && hasDate )
+        {
+            searcher.productSearch( product, date );
+        }
+
+        if( hasSeller && !hasDate )
+        {
+            searcher.sellerSearch( seller );
+        }
+        else if( hasSeller && hasDate )
+        {
+            searcher.sellerSearch( seller, date );
+        }
+
+        System.out.println( "\n===========================================" );
     }
 
     public void ship( String taskLine )
     {
-
+        //Implement
     }
 
 
@@ -95,7 +186,7 @@ public class TaskManager
             {
                 insertCarton( cx, ii );
 
-                System.out.print(cx.getRowPosition() + ":" + cx.getColumnPosition());
+                System.out.print( cx.getRowPosition() + ":" + cx.getColumnPosition() );
 
                 mapCarton( cx );
             }
@@ -123,7 +214,7 @@ public class TaskManager
             {
                 insertCarton( cx, ii );
 
-                System.out.print(cx.getRowPosition() + ":" + cx.getColumnPosition());
+                System.out.print( cx.getRowPosition() + ":" + cx.getColumnPosition() );
 
                 mapCarton( cx );
             }
@@ -154,7 +245,7 @@ public class TaskManager
                 cx.setRowPosition( ii );
                 cx.setColumnPosition( colPosition );
 
-                System.out.print(cx.getRowPosition() + ":" + cx.getColumnPosition());
+                System.out.print( cx.getRowPosition() + ":" + cx.getColumnPosition() );
 
                 mapCarton( cx );
             }
