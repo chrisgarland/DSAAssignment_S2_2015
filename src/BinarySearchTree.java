@@ -271,7 +271,7 @@ public class BinarySearchTree
     }
 
 
-//Supporting Metods:
+//Supporting Methods:
 
     /**
      * Checks to see whether a TreeNode is a leaf node.

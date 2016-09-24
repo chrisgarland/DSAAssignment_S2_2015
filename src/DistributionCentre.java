@@ -25,7 +25,6 @@ public class DistributionCentre
      */
     public DistributionCentre()
     {
-
         numStockRooms = 0;
         numCartons = 0;
         geoQueue = new DSAQueue<String>();
@@ -35,6 +34,7 @@ public class DistributionCentre
         searchByProduct = new BinarySearchTree();
         searchByWholesaler = new BinarySearchTree();
     }
+
 
     /**
      * This method is responsible for reading the

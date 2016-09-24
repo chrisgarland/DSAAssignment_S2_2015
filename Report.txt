@@ -1,0 +1,30 @@
+Add:
+
+First step is to read the incoming carton from file. Instantiate carton. If new carton has lifetime warranty, first priority is dead-end, this is because it won’t matter if it gets buried in a stack. If no dead - end is available, try for a yard, then Rolling corridor. 
+If it does not have a lifetime warranty, first priority is Rolling corridor, then yard, then dead-end.
+
+After the carton has been added, the location within the master bank and location within the storage bank are recorded in fields within the carton class. The carton is then added to three structures for later retrieval. A hash table (search by consignment note) and two binary search trees (search by product name and by wholesaler).
+
+
+
+Search:
+
+Uses three main structures to search from. The first is a hash table of Cartons, using the consignment note as the key. The other two are binary search trees. One of the trees uses product type as a key, the other uses wholesaler name as key. Both trees allow for duplicate keys. There is an array at each node. When duplicate key is inserted, it gets added to the array which gets (reverse) sorted by warranty date as each carton comes in. This array contains every carton of a given key (either product or wholesaler). I chose to use insertion sort as n is very small (max 1024) and we are only sorting one element at a time. The low memory overhead and stability makes it an attractive choice here. Also the array is always nearly sorted. Perfect conditions for insertion sort. One element at a time insures worst case of O(n), but n is very small.
+
+The reverse sorting means that when we are given a date we search the array for the first date of equal or lower value and return every carton after it (as they will all have a lower date).
+
+If no date is given we can simply return the entire array.
+
+
+
+Ship/Remove:
+
+I did not implement Ship/Remove. Had I done so, I would use the search functionality to find the carton/s. If the carton was buried then I would use the add function to displace cartons, but blacking out the current storage bank’s index to insure carton isn’t added to the same storage bank.
+
+
+
+
+
+
+
+Chris Garland: 15560955

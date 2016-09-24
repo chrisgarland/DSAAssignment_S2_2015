@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1224.8219387755103" y="955.0">Yard</node>
+    <node x="1861.4375" y="444.0">CartonContainer</node>
+    <node x="0.0" y="976.5">CartonSearcher</node>
+    <node x="2252.2914285714287" y="400.0">DSALinkedList</node>
+    <node x="1513.8219387755103" y="966.0">RollingCorridor</node>
+    <node x="1352.2289285714285" y="1485.5">DescriptionWriter</node>
+    <node x="2494.3641326530615" y="1463.0">DescriptionReader</node>
+    <node x="2649.2914285714287" y="866.5">BinarySearchTree</node>
+    <node x="87.5" y="1430.0">TaskManager</node>
+    <node x="516.5" y="778.0">DSAHashTable</node>
+    <node x="1299.4375" y="0.0">Carton</node>
+    <node x="1114.7289285714285" y="1836.0">DistributionCentre</node>
+    <node x="1779.451632653061" y="1441.5">BankBuilder</node>
+    <node x="723.5141326530612" y="444.5">DSAHashEntry</node>
+    <node x="0.0" y="2366.0">DSAStack</node>
+    <node x="1302.2289285714285" y="2270.0">DSAAssignment</node>
+    <node x="1884.8844387755103" y="977.0">DeadEnd</node>
+    <node x="1373.4375" y="356.0">StockRoom</node>
+    <node x="2271.2914285714287" y="932.0">DSAQueue</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="StockRoom" target="Carton">
+      <point x="-117.0" y="-181.0" />
+      <point x="0.0" y="148.0" />
+    </edge>
+    <edge source="DistributionCentre" target="DSAHashTable">
+      <point x="-84.6875" y="-192.0" />
+      <point x="1301.0414285714285" y="1766.0" />
+      <point x="776.3219387755101" y="1766.0" />
+      <point x="776.3219387755101" y="1410.0" />
+      <point x="833.0" y="1410.0" />
+      <point x="0.0" y="291.0" />
+    </edge>
+    <edge source="DistributionCentre" target="BinarySearchTree">
+      <point x="220.1875" y="-192.0" />
+      <point x="1605.9164285714285" y="1806.0" />
+      <point x="2892.464795918367" y="1806.0" />
+      <point x="2892.464795918367" y="1410.0" />
+      <point x="2880.2914285714287" y="1410.0" />
+      <point x="0.0" y="202.5" />
+    </edge>
+    <edge source="CartonContainer" target="Carton">
+      <point x="70.75" y="-93.0" />
+      <point x="2073.6875" y="316.0" />
+      <point x="1654.1517857142858" y="316.0" />
+      <point x="163.71428571428578" y="148.0" />
+    </edge>
+    <edge source="DistributionCentre" target="BankBuilder">
+      <point x="84.6875" y="-192.0" />
+      <point x="1470.4164285714285" y="1766.0" />
+      <point x="2000.451632653061" y="1766.0" />
+      <point x="0.0" y="136.5" />
+    </edge>
+    <edge source="DSAHashTable" target="DSAHashEntry">
+      <point x="-158.25" y="-291.0" />
+      <point x="674.75" y="758.0" />
+      <point x="791.7641326530612" y="758.0" />
+      <point x="-68.25" y="92.5" />
+    </edge>
+    <edge source="DSAAssignment" target="DistributionCentre">
+      <point x="0.0" y="-25.5" />
+      <point x="0.0" y="192.0" />
+    </edge>
+    <edge source="BankBuilder" target="StockRoom">
+      <point x="27.625" y="-136.5" />
+      <point x="2028.076632653061" y="1380.0" />
+      <point x="2134.3844387755103" y="1380.0" />
+      <point x="2134.3844387755103" y="748.0" />
+      <point x="1802.4375" y="748.0" />
+      <point x="195.0" y="181.0" />
+    </edge>
+    <edge source="DistributionCentre" target="StockRoom">
+      <point x="-50.8125" y="-192.0" />
+      <point x="1334.9164285714285" y="1756.0" />
+      <point x="1160.0" y="1756.0" />
+      <point x="1160.0" y="738.0" />
+      <point x="1412.4375" y="738.0" />
+      <point x="-195.0" y="181.0" />
+    </edge>
+    <edge source="DistributionCentre" target="DSAQueue">
+      <point x="118.5625" y="-192.0" />
+      <point x="1504.2914285714285" y="1776.0" />
+      <point x="2443.8914285714286" y="1776.0" />
+      <point x="2443.8914285714286" y="1400.0" />
+      <point x="2450.2914285714287" y="1400.0" />
+      <point x="0.0" y="137.0" />
+    </edge>
+    <edge source="BankBuilder" target="BinarySearchTree">
+      <point x="193.375" y="-136.5" />
+      <point x="2193.826632653061" y="1410.0" />
+      <point x="2726.2914285714287" y="1410.0" />
+      <point x="-154.0" y="202.5" />
+    </edge>
+    <edge source="BankBuilder" target="DSAHashTable">
+      <point x="-193.375" y="-136.5" />
+      <point x="1807.076632653061" y="1410.0" />
+      <point x="1044.0" y="1410.0" />
+      <point x="211.0" y="291.0" />
+    </edge>
+    <edge source="DeadEnd" target="StockRoom">
+      <point x="0.0" y="-92.0" />
+      <point x="2004.3844387755103" y="758.0" />
+      <point x="1724.4375" y="758.0" />
+      <point x="117.0" y="181.0" />
+    </edge>
+    <edge source="TaskManager" target="Carton">
+      <point x="102.0" y="-148.0" />
+      <point x="393.5" y="316.0" />
+      <point x="1326.7232142857142" y="316.0" />
+      <point x="-163.71428571428578" y="148.0" />
+    </edge>
+    <edge source="BankBuilder" target="RollingCorridor">
+      <point x="-82.875" y="-136.5" />
+      <point x="1917.576632653061" y="1390.0" />
+      <point x="1663.8219387755103" y="1390.0" />
+      <point x="0.0" y="103.0" />
+    </edge>
+    <edge source="DSAHashEntry" target="Carton">
+      <point x="0.0" y="-92.5" />
+      <point x="860.0141326530612" y="336.0" />
+      <point x="1435.8660714285716" y="336.0" />
+      <point x="-54.57142857142844" y="148.0" />
+    </edge>
+    <edge source="DistributionCentre" target="DescriptionWriter">
+      <point x="16.9375" y="-192.0" />
+      <point x="1402.6664285714285" y="1816.0" />
+      <point x="1429.7289285714285" y="1816.0" />
+      <point x="-77.5" y="92.5" />
+    </edge>
+    <edge source="DistributionCentre" target="DescriptionReader">
+      <point x="186.3125" y="-192.0" />
+      <point x="1572.0414285714285" y="1796.0" />
+      <point x="2628.8641326530615" y="1796.0" />
+      <point x="0.0" y="115.0" />
+    </edge>
+    <edge source="TaskManager" target="CartonSearcher">
+      <point x="-102.0" y="-148.0" />
+      <point x="189.5" y="1410.0" />
+      <point x="231.0" y="1410.0" />
+      <point x="77.0" y="92.5" />
+    </edge>
+    <edge source="Yard" target="StockRoom">
+      <point x="0.0" y="-114.0" />
+      <point x="1359.3219387755103" y="758.0" />
+      <point x="1568.4375" y="758.0" />
+      <point x="-39.0" y="181.0" />
+    </edge>
+    <edge source="DistributionCentre" target="TaskManager">
+      <point x="-220.1875" y="-192.0" />
+      <point x="1165.5414285714285" y="1806.0" />
+      <point x="189.5" y="1806.0" />
+      <point x="-102.0" y="148.0" />
+    </edge>
+    <edge source="DescriptionWriter" target="DistributionCentre">
+      <point x="77.5" y="92.5" />
+      <point x="1584.7289285714285" y="1756.0" />
+      <point x="1436.5414285714285" y="1756.0" />
+      <point x="50.8125" y="-192.0" />
+    </edge>
+    <edge source="BankBuilder" target="DeadEnd">
+      <point x="-27.625" y="-136.5" />
+      <point x="1972.826632653061" y="1410.0" />
+      <point x="2004.3844387755103" y="1410.0" />
+      <point x="0.0" y="92.0" />
+    </edge>
+    <edge source="BankBuilder" target="Yard">
+      <point x="-138.125" y="-136.5" />
+      <point x="1862.326632653061" y="1400.0" />
+      <point x="1359.3219387755103" y="1400.0" />
+      <point x="0.0" y="114.0" />
+    </edge>
+    <edge source="TaskManager" target="DistributionCentre">
+      <point x="102.0" y="148.0" />
+      <point x="393.5" y="1796.0" />
+      <point x="1199.4164285714285" y="1796.0" />
+      <point x="-186.3125" y="-192.0" />
+    </edge>
+    <edge source="DescriptionReader" target="DSAQueue">
+      <point x="0.0" y="-115.0" />
+      <point x="2628.8641326530615" y="1400.0" />
+      <point x="2593.4914285714285" y="1400.0" />
+      <point x="143.2" y="137.0" />
+    </edge>
+    <edge source="DistributionCentre" target="Carton">
+      <point x="-152.4375" y="-192.0" />
+      <point x="1233.2914285714285" y="1786.0" />
+      <point x="506.0" y="1786.0" />
+      <point x="506.0" y="326.0" />
+      <point x="1381.294642857143" y="326.0" />
+      <point x="-109.14285714285711" y="148.0" />
+    </edge>
+    <edge source="BankBuilder" target="DSAQueue">
+      <point x="82.875" y="-136.5" />
+      <point x="2083.326632653061" y="1390.0" />
+      <point x="2307.0914285714284" y="1390.0" />
+      <point x="-143.2" y="137.0" />
+    </edge>
+    <edge source="CartonSearcher" target="DistributionCentre">
+      <point x="-77.0" y="92.5" />
+      <point x="77.0" y="1816.0" />
+      <point x="1131.6664285714285" y="1816.0" />
+      <point x="-254.0625" y="-192.0" />
+    </edge>
+    <edge source="RollingCorridor" target="StockRoom">
+      <point x="0.0" y="-103.0" />
+      <point x="1663.8219387755103" y="758.0" />
+      <point x="1646.4375" y="758.0" />
+      <point x="39.0" y="181.0" />
+    </edge>
+    <edge source="DSAQueue" target="DSALinkedList">
+      <point x="89.5" y="-137.0" />
+      <point x="2539.7914285714287" y="758.0" />
+      <point x="2549.2914285714287" y="758.0" />
+      <point x="99.0" y="137.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.37293233082706767" x="1538.8346774193549" y="1139.366935483871" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
