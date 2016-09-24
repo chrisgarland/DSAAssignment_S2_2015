@@ -1,5 +1,5 @@
 # DSAAssignment_S2_2015
-Refer to the [Assignment specification](AssignmentSpecification.pdf) for details
+Refer to the [assignment specification](AssignmentSpecification.pdf) for details
 
 ### TODO
 
