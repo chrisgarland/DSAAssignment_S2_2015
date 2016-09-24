@@ -1,4 +1,4 @@
-# DSAAssignment_S2_2015
+# Data Structures & Algorithms Assignment_S2_2015
 Refer to the [assignment specification](AssignmentSpecification.pdf) for details
 
 ### TODO
